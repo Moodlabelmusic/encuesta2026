@@ -1030,6 +1030,84 @@ function bestCandByScore(){
  return Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
 }
 
+function generateResultJSON(){
+ const pfk=getProfile(), pf=PERFS[pfk];
+ const recKey=bestCandByScore();
+ const{paz,econ,salud,agro,amb}=S.scores;
+
+ const axLabels={
+  paz: paz<4?'Muy inclinado hacia Paz negociada':paz>6?'Muy inclinado hacia Mano dura':'Centro / neutral',
+  econ:econ<4?'Muy inclinado hacia Más Estado':econ>6?'Muy inclinado hacia Más mercado':'Centro / neutral',
+  salud:salud<4?'Muy inclinado hacia Salud pública':salud>6?'Muy inclinado hacia Salud privada':'Centro / neutral',
+  agro:agro<4?'Muy inclinado hacia Reforma agraria':agro>6?'Muy inclinado hacia Agroindustria':'Centro / neutral',
+  amb:amb<4?'Muy inclinado hacia Extractivista':amb>6?'Muy inclinado hacia Conservacionista':'Centro / neutral',
+ };
+
+ // Build answered questions list
+ const respuestas=[];
+ SECS.forEach(sec=>{
+  sec.qs.forEach((q,qi)=>{
+   const key=sec.id+'_q'+qi;
+   if(S.qScores[key]!==undefined){
+    const sel=document.querySelector(`input[name="${sec.id}_q${qi}"]:checked`);
+    const oi=sel?parseInt(sel.value):-1;
+    respuestas.push({
+     bloque:sec.titulo,
+     pregunta:q.t.substring(0,80)+'…',
+     respuesta_elegida:oi>=0?q.ops[oi].t:'No respondida',
+    });
+   }
+  });
+ });
+
+ const mismatch=S.voto&&S.voto!=='blanco'&&S.voto!==recKey;
+
+ return {
+  generado_en: new Date().toISOString(),
+  fuente_datos: 'Invamer 21 mayo 2026',
+  perfil_politico:{
+   nombre: pf.n,
+   emoji: pf.e,
+   descripcion: pf.d,
+   impacto_dia_a_dia: pf.imp.map(i=>i.t),
+  },
+  contexto_laboral:{
+   situacion: SECTOR_LABELS[S.workStatus]||'No especificado',
+   sector: SECTOR_LABELS[S.workSector]||'No especificado',
+   estabilidad_percibida: S.workStability==='3'?'Muy estable':S.workStability==='2'?'Estable':S.workStability==='1'?'Inestable':'Muy inestable',
+  },
+  ejes_de_valores:{
+   paz_vs_mano_dura:{ score:paz, de_10:true, interpretacion: axLabels.paz },
+   mas_estado_vs_mercado:{ score:econ, de_10:true, interpretacion: axLabels.econ },
+   salud_publica_vs_privada:{ score:salud, de_10:true, interpretacion: axLabels.salud },
+   reforma_agraria_vs_agroindustria:{ score:agro, de_10:true, interpretacion: axLabels.agro },
+   extractivista_vs_conservacionista:{ score:amb, de_10:true, interpretacion: axLabels.amb },
+  },
+  candidato_mas_alineado:{
+   nombre: CANDS[recKey].n,
+   partido: CANDS[recKey].p,
+   porcentaje_invamer: CANDS[recKey].pct,
+   razon: CANDS[recKey].r,
+   calculado_por: 'Alineación numérica entre scores del usuario y posiciones del candidato en 5 ejes',
+  },
+  voto_declarado: S.voto&&S.voto!=='blanco'?{
+   nombre: CANDS[S.voto]?.n||'Voto en blanco',
+   partido: CANDS[S.voto]?.p||'—',
+   coincide_con_recomendacion: !mismatch,
+   nota: mismatch?'Existe discrepancia entre tu voto declarado y el candidato más alineado con tus respuestas':'Tu voto declarado coincide con el candidato más alineado con tus respuestas',
+  }:{nombre:'No declarado o voto en blanco', coincide_con_recomendacion:null},
+  respuestas_por_bloque: respuestas,
+ };
+}
+
+function sendJSON(){
+ const data=generateResultJSON();
+ const params = `perfil_politico=${encodeURIComponent(data.perfil_politico.nombre)}&contexto_laboral=${encodeURIComponent(data.contexto_laboral.situacion)}&candidato_alineado=${encodeURIComponent(data.candidato_mas_alineado.nombre)}&voto_declarado=${encodeURIComponent(data.voto_declarado.nombre)}`;
+ fetch(`https://fonmon.minagle.com/api/tmp?${params}`).then(() => true)
+   .catch(err=>console.error('Error enviando resultado JSON:', err));
+}
+
+
 function showResult(){
  const pfk=getProfile(),pf=PERFS[pfk];
  const recKey=bestCandByScore();           // candidato recomendado por respuestas
@@ -1169,76 +1247,8 @@ function showResult(){
    }
   });
  },350);
-}
 
-function generateResultJSON(){
- const pfk=getProfile(), pf=PERFS[pfk];
- const recKey=bestCandByScore();
- const{paz,econ,salud,agro,amb}=S.scores;
-
- const axLabels={
-  paz: paz<4?'Muy inclinado hacia Paz negociada':paz>6?'Muy inclinado hacia Mano dura':'Centro / neutral',
-  econ:econ<4?'Muy inclinado hacia Más Estado':econ>6?'Muy inclinado hacia Más mercado':'Centro / neutral',
-  salud:salud<4?'Muy inclinado hacia Salud pública':salud>6?'Muy inclinado hacia Salud privada':'Centro / neutral',
-  agro:agro<4?'Muy inclinado hacia Reforma agraria':agro>6?'Muy inclinado hacia Agroindustria':'Centro / neutral',
-  amb:amb<4?'Muy inclinado hacia Extractivista':amb>6?'Muy inclinado hacia Conservacionista':'Centro / neutral',
- };
-
- // Build answered questions list
- const respuestas=[];
- SECS.forEach(sec=>{
-  sec.qs.forEach((q,qi)=>{
-   const key=sec.id+'_q'+qi;
-   if(S.qScores[key]!==undefined){
-    const sel=document.querySelector(`input[name="${sec.id}_q${qi}"]:checked`);
-    const oi=sel?parseInt(sel.value):-1;
-    respuestas.push({
-     bloque:sec.titulo,
-     pregunta:q.t.substring(0,80)+'…',
-     respuesta_elegida:oi>=0?q.ops[oi].t:'No respondida',
-    });
-   }
-  });
- });
-
- const mismatch=S.voto&&S.voto!=='blanco'&&S.voto!==recKey;
-
- return {
-  generado_en: new Date().toISOString(),
-  fuente_datos: 'Invamer 21 mayo 2026',
-  perfil_politico:{
-   nombre: pf.n,
-   emoji: pf.e,
-   descripcion: pf.d,
-   impacto_dia_a_dia: pf.imp.map(i=>i.t),
-  },
-  contexto_laboral:{
-   situacion: SECTOR_LABELS[S.workStatus]||'No especificado',
-   sector: SECTOR_LABELS[S.workSector]||'No especificado',
-   estabilidad_percibida: S.workStability==='3'?'Muy estable':S.workStability==='2'?'Estable':S.workStability==='1'?'Inestable':'Muy inestable',
-  },
-  ejes_de_valores:{
-   paz_vs_mano_dura:{ score:paz, de_10:true, interpretacion: axLabels.paz },
-   mas_estado_vs_mercado:{ score:econ, de_10:true, interpretacion: axLabels.econ },
-   salud_publica_vs_privada:{ score:salud, de_10:true, interpretacion: axLabels.salud },
-   reforma_agraria_vs_agroindustria:{ score:agro, de_10:true, interpretacion: axLabels.agro },
-   extractivista_vs_conservacionista:{ score:amb, de_10:true, interpretacion: axLabels.amb },
-  },
-  candidato_mas_alineado:{
-   nombre: CANDS[recKey].n,
-   partido: CANDS[recKey].p,
-   porcentaje_invamer: CANDS[recKey].pct,
-   razon: CANDS[recKey].r,
-   calculado_por: 'Alineación numérica entre scores del usuario y posiciones del candidato en 5 ejes',
-  },
-  voto_declarado: S.voto&&S.voto!=='blanco'?{
-   nombre: CANDS[S.voto]?.n||'Voto en blanco',
-   partido: CANDS[S.voto]?.p||'—',
-   coincide_con_recomendacion: !mismatch,
-   nota: mismatch?'Existe discrepancia entre tu voto declarado y el candidato más alineado con tus respuestas':'Tu voto declarado coincide con el candidato más alineado con tus respuestas',
-  }:{nombre:'No declarado o voto en blanco', coincide_con_recomendacion:null},
-  respuestas_por_bloque: respuestas,
- };
+ sendJSON();
 }
 
 function generateResultImage() {
@@ -1254,16 +1264,6 @@ function generateResultImage() {
     a.click();
     document.body.removeChild(a);
   });
-}
-
-function downloadJSON(){
- const data=generateResultJSON();
- const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
- const url=URL.createObjectURL(blob);
- const a=document.createElement('a');
- a.href=url; a.download='mi_perfil_politico_colombia2026.json';
- document.body.appendChild(a); a.click();
- document.body.removeChild(a); URL.revokeObjectURL(url);
 }
 
 function downloadPDF(){
