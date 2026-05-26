@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Qué Colombia quieres? · 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--crema:#FDF8EE;--gris:#2C2C2C;--gc:#E8E3D9;--azul:#003087;--am:#F5C800}
+body{font-family:'DM Sans',sans-serif;background:var(--crema);color:var(--gris);min-height:100vh;overflow-x:hidden}
+.screen{display:none;animation:fu .4s ease}.screen.on{display:block}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.land{min-height:100vh;display:flex;flex-direction:column;background:var(--azul)}
+.flag{height:6px;background:linear-gradient(90deg,#F5C800 33%,#003087 33%,#003087 66%,#CE1126 66%)}
+.land-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:48px 28px;max-width:640px;margin:0 auto;width:100%}
+.badge{display:inline-block;background:var(--am);color:var(--azul);font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:5px 14px;border-radius:2px;margin-bottom:24px}
+.land h1{font-family:'Fraunces',serif;font-size:clamp(2.2rem,7vw,3.5rem);font-weight:900;color:#fff;line-height:1.05;margin-bottom:20px}
+.land h1 em{color:var(--am);font-style:italic}
+.land-body>p{color:rgba(255,255,255,.75);font-size:15px;line-height:1.65;margin-bottom:24px;max-width:480px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.chip{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:12px;padding:6px 14px;border-radius:99px}
+.btn{background:var(--am);color:var(--azul);border:none;padding:18px 40px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;border-radius:8px;cursor:pointer;transition:all .2s;width:100%;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.dato{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--gc)}
+.dato:last-of-type{border-bottom:none;margin-bottom:4px}
+.di{font-size:1.4rem;flex-shrink:0;margin-top:2px}
+.si{min-height:100vh;display:flex;flex-direction:column}
+.si-hero{padding:52px 28px 36px;color:#fff;flex-shrink:0}
+.si-num{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;opacity:.65;margin-bottom:12px}
+.si-emoji{font-size:3rem;margin-bottom:14px;display:block}
+.si-hero h2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,5vw,2.6rem);font-weight:900;line-height:1.1;margin-bottom:10px}
+.si-hero p{font-size:14px;opacity:.82;line-height:1.6;max-width:480px}
+.si-hero *{color:#fff!important}
+.si-hero .si-num,.si-hero p{opacity:.85}
+.datos{background:#fff;flex:1;padding:28px;max-width:640px;margin:0 auto;width:100%}
+.datos,.datos *{color:var(--gris)}
+.datos h3{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#aaa!important;margin-bottom:18px}
+.dn{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;margin-bottom:2px;color:var(--gris)!important}
+.dd{font-size:13px;color:#555!important;line-height:1.5}
+.btn{background:var(--am);color:#fff!important;border:none;padding:18px 40px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;border-radius:8px;cursor:pointer;transition:all .2s;width:100%;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.tbar{background:#fff;border-bottom:1px solid var(--gc);padding:12px 20px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.tbar-t{font-size:12px;font-weight:600;white-space:nowrap;min-width:90px}
+.po{flex:1;height:5px;background:var(--gc);border-radius:99px;overflow:hidden}
+.pi{height:100%;border-radius:99px;transition:width .4s ease}
+.qw{max-width:640px;margin:0 auto;padding:24px 20px 72px}
+.qcard{background:#fff;border:1px solid var(--gc);border-radius:12px;padding:22px;margin-bottom:16px;animation:fu .35s ease both}
+.qn{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.qt{font-size:.95rem;font-weight:500;line-height:1.55;margin-bottom:12px}
+.ctx{margin-bottom:14px;border-radius:8px;overflow:hidden;border:1px solid #e5e5e5}
+.ctx-row{display:flex;gap:10px;padding:9px 12px;font-size:12px;line-height:1.45;align-items:flex-start}
+.ctx-row:not(:last-child){border-bottom:1px solid #f0f0f0}
+.ctx-row.c0{background:#f5f7fa}.ctx-row.c1{background:#fffbeb}.ctx-row.c2{background:#fef2f2}
+.ctx-label{font-weight:700;flex-shrink:0;font-size:10px;letter-spacing:.5px;text-transform:uppercase;margin-top:1px;min-width:52px}
+.ctx-row.c0 .ctx-label{color:#374151}.ctx-row.c1 .ctx-label{color:#92400e}.ctx-row.c2 .ctx-label{color:#991b1b}
+.ctx-text{color:#444}
+.opts{display:flex;flex-direction:column;gap:8px}
+.ol{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border:1.5px solid var(--gc);border-radius:8px;cursor:pointer;transition:all .15s;user-select:none}
+.ol:hover{border-color:#bbb;background:#fafafa}
+.ol.sel{border-color:var(--sc,#003087);background:color-mix(in srgb,var(--sc,#003087) 8%,#fff)}
+.ol input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.rd{width:18px;height:18px;border-radius:50%;border:2px solid #ccc;flex-shrink:0;margin-top:1px;transition:all .15s;position:relative}
+.ol.sel .rd{background:var(--sc,#003087);border-color:var(--sc,#003087)}
+.ol.sel .rd::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:6px;height:6px;border-radius:50%;background:#fff}
+.ot{font-size:13.5px;line-height:1.45}
+.nav{text-align:center;padding:14px 0 6px}
+.btn-s{background:var(--sc,#003087);color:#fff;border:none;padding:16px 36px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;border-radius:8px;cursor:pointer;transition:all .2s;width:100%;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.btn-s:hover:not(:disabled){opacity:.9;transform:translateY(-1px)}
+.btn-s:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.ac{font-size:11px;color:#bbb;margin-top:8px;text-align:center}
+.work-pill{color:white;display:inline-block;padding:5px 14px;border-radius:99px;font-size:12px;font-weight:700;margin-bottom:20px}
+.divider{border:none;border-top:2px dashed var(--gc);margin:24px 0}
+.rw{max-width:640px;margin:0 auto;padding:28px 20px 72px}
+.rh{border-radius:16px 16px 0 0;padding:36px 24px 28px;text-align:center;color:#fff}
+.re{font-size:3.2rem;margin-bottom:12px;display:block}
+.rb{display:inline-block;background:rgba(255,255,255,.2);color:#fff;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:5px 14px;border-radius:2px;margin-bottom:14px}
+.rh h2{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:900;margin-bottom:10px;line-height:1.15}
+.rh p{font-size:13.5px;opacity:.85;line-height:1.65;max-width:420px;margin:0 auto}
+.raxes,.rcand,.rimp,.rcmp,.rwork{background:#fff;border:1px solid var(--gc);border-top:none;padding:22px 24px}
+.raxes h3,.rcand h3,.rimp h3,.rcmp h3,.rwork h3{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#aaa;margin-bottom:16px}
+.ax{margin-bottom:18px}
+.axl{display:flex;justify-content:space-between;font-size:11px;color:#888;font-weight:500;margin-bottom:6px}
+.axo{height:10px;border-radius:99px;overflow:visible;position:relative}
+.axo-track{height:10px;border-radius:99px;width:100%;position:relative}
+.ax-marker{position:absolute;top:50%;transform:translate(-50%,-50%);width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid #333;box-shadow:0 2px 8px rgba(0,0,0,.25);transition:left 1.2s cubic-bezier(.16,1,.3,1);left:50%;z-index:2}
+.ax-val{font-size:11px;font-weight:700;color:#555;text-align:center;margin-top:6px}
+.cc{border-radius:10px;padding:16px;display:flex;gap:14px;align-items:flex-start}
+.ci{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:.85rem;font-weight:900;color:#fff;flex-shrink:0}
+.cn{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;margin-bottom:3px}
+.cr{font-size:12.5px;color:#555;line-height:1.5}
+.rimp{background:#0f172a}
+.rimp h3{color:rgba(255,255,255,.45)}
+.ib{display:flex;gap:10px;margin-top:10px;align-items:flex-start}
+.ib span:first-child{font-size:1rem;flex-shrink:0;margin-top:1px}
+.ib span:last-child{font-size:13px;color:rgba(255,255,255,.82);line-height:1.5}
+.rcmp{border-radius:0 0 16px 16px}
+.cmp-card{border:1.5px solid var(--gc);border-radius:10px;padding:16px;margin-bottom:12px}
+.cmp-card:last-child{margin-bottom:0}
+.cmp-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.cmp-ini{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:.75rem;font-weight:900;color:#fff;flex-shrink:0}
+.cmp-name{font-weight:700;font-size:.9rem}
+.cmp-pct{font-size:11px;color:#aaa}
+.cmp-rows{display:flex;flex-direction:column;gap:6px}
+.cmp-row{display:flex;align-items:flex-start;gap:8px;font-size:12px;line-height:1.4}
+.cmp-icon{flex-shrink:0;font-size:.85rem;margin-top:1px}
+.rwork{background:#f8fafc}
+.work-tag{display:inline-flex;align-items:center;gap:6px;background:var(--azul);color:#fff;font-size:12px;font-weight:600;padding:6px 14px;border-radius:99px;margin-bottom:16px}
+.disc{text-align:center;font-size:11px;color:#aaa;margin-top:18px;line-height:1.5}
+@media(max-width:480px){.land-body,.si-hero{padding:36px 20px 28px}.datos,.qw,.rw{padding:18px 14px}.qcard{padding:18px}}
+
+@media print {
+  body { background: #fff !important; }
+  .tbar, .land, .si, .qw, .nav, .btn-s, .disc, #restart-btn { display: none !important; }
+  .rw { padding: 0 !important; max-width: 100% !important; }
+  .rh { border-radius: 8px !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .raxes, .rcand, .rimp, .rcmp, .rwork { border: 1px solid #ddd !important; page-break-inside: avoid; }
+  .rimp { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .axi { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .cmp-card { page-break-inside: avoid; }
+  .screen { display: block !important; }
+  #resultado-wrap { display: block !important; }
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+// ═══════════════════════════════════════
+// SECCIONES TEMATICAS
+// ═══════════════════════════════════════
+const SECS=[
+{id:'paz',titulo:'Guerra y Paz',emoji:'🕊️',color:'#1a5c2a',num:'01 de 07',
+ intro:'Colombia entra a 2026 con cinco grupos armados activos, la paz total estancada y la violencia rural al alza.',
+ datos:[
+  {i:'👥',n:'9.3 millones',d:'de víctimas a mayo 2026 (UARIV). Van 87 masacres en lo que va del año — ritmo superior al de 2025 completo.'},
+  {i:'📍',n:'230 municipios',d:'con presencia débil o nula del Estado. El ELN y las disidencias de Iván Mordisco expandieron territorio un 40% desde 2022.'},
+  {i:'💊',n:'$18.500M USD',d:'mueve el narcotráfico colombiano en 2026. Cultivos de coca en récord histórico: 253.000 hectáreas (UNODC).'},
+  {i:'📉',n:'Paz total: 4 años',d:'de proceso sin acuerdo firmado. Homicidios en zonas de negociación subieron 22% en 2025 vs 2024.'},
+ ],
+ qs:[
+  {n:'01',t:'El gobierno lleva 4 años negociando con el ELN. Para que firmen, seguirían en zonas de coca 3 años más en "transición". ¿Lo aceptarías?',
+   ctx:['El ELN tiene presencia activa en Arauca, Norte de Santander, Chocó, Nariño y la frontera venezolana.',
+        'Hoy: en 2025 el ELN cometió 340 ataques a infraestructura — el doble que en 2022.',
+        'Si sigue: para 2028 podría controlar los corredores del Pacífico que mueven el 60% de la cocaína al mundo.'],
+   ops:[{t:'Sí — la paz a largo plazo justifica ese costo temporal',s:{paz:2}},{t:'Solo con compromisos verificables por veedores internacionales',s:{paz:1}},{t:'No — primero que abandonen el narcotráfico, luego negociamos',s:{paz:-1}},{t:'No — hay que combatirlos militarmente, no negociar más',s:{paz:-2}}]},
+  {n:'02',t:'Vives en un municipio donde el Estado no llega y el ELN cobra "impuesto" a los negocios locales. ¿Qué harías?',
+   ctx:['En más de 200 municipios el grupo armado actúa como autoridad de facto.',
+        'Hoy: el 68% de comerciantes en zonas de conflicto pagan extorsión (encuesta Cámara de Comercio 2025).',
+        'Si sigue: la economía ilegal será la única opción para ~2M de familias rurales en 2030.'],
+   ops:[{t:'Organizaría a la comunidad para dialogar con el grupo',s:{paz:2}},{t:'Me iría a la ciudad — no es vida digna',s:{paz:0}},{t:'Apoyaría que la fuerza pública entre con todo',s:{paz:-2}},{t:'Denunciaría ante las autoridades y esperaría',s:{paz:-1}}]},
+  {n:'03',t:'Para lograr paz con el ELN, los jefes no irían a la cárcel — habría justicia restaurativa. ¿Lo aceptas?',
+   ctx:['La JEP del acuerdo FARC lleva 9 años. A mayo 2026 hay 6 condenas leves. Ningún exjefe en cárcel convencional.',
+        'Hoy: 14.000 víctimas FARC sin reparación efectiva. Muchos exjefes en política activa.',
+        'Si no hay justicia real: la tasa de reincidencia armada se mantiene en el 38% (datos ARN 2026).'],
+   ops:[{t:'Sí — la paz vale más que la cárcel',s:{paz:2}},{t:'Solo con penas alternativas reales y reparación efectiva',s:{paz:1}},{t:'No — la impunidad no es paz, es un mensaje peligroso',s:{paz:-1}},{t:'No — sin cárcel no hay señal disuasiva real',s:{paz:-2}}]},
+  {n:'04',t:'¿Pagarías un 2% más de tu ingreso mensual para financiar la reintegración de exguerrilleros?',
+   ctx:['La reincorporación FARC costó $4.1 billones COP en 9 años. El 38% reincidió en grupos armados.',
+        'Hoy: el presupuesto de reincorporación fue recortado un 18% en 2026 por déficit fiscal.',
+        'Sin financiación: grupos reclutan jóvenes rurales a $900.000/mes — más que el 60% de los empleos rurales formales.'],
+   ops:[{t:'Sí — es inversión real en el futuro del país',s:{paz:2,econ:-1}},{t:'Solo si hay resultados concretos y auditados',s:{paz:1}},{t:'No — ya pago suficientes impuestos sin ver resultados',s:{paz:-1,econ:1}},{t:'No — esa no es mi responsabilidad directa',s:{paz:-2}}]},
+  {n:'05',t:'Colombia logra paz total en 2027 — cero grupos armados. Pero la economía sigue igual que hoy. ¿Valió la pena?',
+   ctx:['El DNP estima que la paz plena sumaría 1.9% al PIB anual por productividad rural recuperada.',
+        'Hoy: el conflicto le cuesta a Colombia ~$22.000M USD al año en daños directos e indirectos.',
+        'Sin paz: Colombia perderá $220.000M USD adicionales en la próxima década por costos del conflicto.'],
+   ops:[{t:'Sí — la paz es la base de todo lo demás',s:{paz:2}},{t:'Sí, pero hay que trabajar también en lo económico',s:{paz:1}},{t:'Depende — si mi vida cotidiana no mejoró, es relativo',s:{paz:-1}},{t:'No — sin mejoras económicas la paz es solo discurso',s:{paz:-2,econ:2}}]},
+ ]},
+{id:'econ',titulo:'Economía',emoji:'📊',color:'#92400e',num:'03 de 07',
+ intro:'El petróleo se acaba en 7 años. La deuda pública está en máximo histórico. Y el empleo informal ya supera al formal. Así está la economía en 2026.',
+ datos:[
+  {i:'🛢️',n:'Reservas: 6.8 años',d:'Al ritmo actual el petróleo se agota en 2033. Ya somos importadores netos de gasolina refinada desde 2024.'},
+  {i:'💸',n:'58% del PIB en deuda',d:'Máximo histórico en 2026. El servicio de la deuda consume más presupuesto que educación y salud combinados.'},
+  {i:'👷',n:'57% de informalidad',d:'Más de la mitad de los trabajadores son informales — sin pensión, sin EPS, sin cesantías.'},
+  {i:'📈',n:'Inflación acumulada 45%',d:'Entre 2021 y 2026. El salario mínimo subió 29% en el mismo período — caída real del poder adquisitivo del 16%.'},
+ ],
+ qs:[
+  {n:'01',t:'El petróleo colombiano se acaba en ~7 años. ¿Qué debería hacer el próximo gobierno YA?',
+   ctx:['El petróleo financia el 23% del presupuesto. Sin él el Estado pierde $18 billones COP al año.',
+        'Hoy: Colombia ya importa gasolina refinada porque no invirtió en refinerías. Pagamos precio internacional.',
+        'Sin acción: en 2033 Colombia será importador neto de crudo también. El impacto fiscal será devastador.'],
+   ops:[{t:'Explorar más petróleo mientras construye alternativas — la transición toma tiempo',s:{econ:1,amb:-1}},{t:'Invertir ya en renovables aunque signifique más deuda a corto plazo',s:{econ:-1,amb:2}},{t:'Aprobar el fracking para ganar tiempo y financiar la transición',s:{econ:1,amb:-1}},{t:'Reducir el Estado al tamaño que pueda financiarse sin petróleo',s:{econ:2,amb:0}}]},
+  {n:'02',t:'Tu factura de luz subió 38% en dos años. El gobierno dice que es por El Niño y falta de inversión en renovables. ¿Qué exiges?',
+   ctx:['El Niño de 2024 redujo embalses al 28% y obligó a comprar energía térmica cara. Colombia genera el 68% de su electricidad con hidroeléctricas.',
+        'Hoy: cada año de El Niño cuesta al país ~$4 billones COP en energía térmica de emergencia.',
+        'Sin diversificación: la factura seguirá siendo rehén del clima — y el clima será más extremo.'],
+   ops:[{t:'Que invierta ya en solar y eólico para no depender del clima',s:{econ:-1,amb:2}},{t:'Que reactive plantas térmicas de gas mientras construye renovables',s:{econ:1,amb:-1}},{t:'Que regule y baje las tarifas aunque desincentive inversión',s:{econ:-1,amb:0}},{t:'Que abra el mercado eléctrico a más privados para que compitan',s:{econ:2,amb:0}}]},
+  {n:'03',t:'Una empresa ofrece trabajo en fracking en el Magdalena Medio a $5.5M/mes — el doble del promedio regional. ¿Lo aceptas?',
+   ctx:['EE.UU. genera el 70% de su gas con fracking bajo regulación EPA. Argentina lleva 12 años en Vaca Muerta con $6.200M USD exportados en 2025. El debate no es si se puede hacer bien — sino si Colombia tiene hoy la institucionalidad para regularlo: la ANLA solo puede inspeccionar el 8% de proyectos activos.',
+        'Hoy: el fracking sigue prohibido por fallo del Consejo de Estado. El desempleo en esas regiones es del 19%.',
+        'Sin decisión: las reservas potenciales quedan sin explotar mientras la región sigue sin empleo digno.'],
+   ops:[{t:'Sí — mi familia necesita ese ingreso y confío en que habrá control',s:{econ:2,amb:-1}},{t:'Sí, pero solo si existe regulación independiente real antes de empezar',s:{econ:1,amb:0}},{t:'No — Colombia no tiene la institucionalidad para hacerlo bien aún',s:{econ:-1,amb:1}},{t:'No — el riesgo al agua potable no tiene precio para mí',s:{econ:-1,amb:2}}]},
+  {n:'04',t:'Una reforma sube impuestos a empresas del 35% al 43%. A cambio el gobierno promete 400.000 empleos públicos. ¿La apoyas?',
+   ctx:['Colombia ya tiene la tasa corporativa más alta de la OCDE. La inversión extranjera directa cayó 31% entre 2022 y 2025.',
+        'Hoy: en 2025 cerraron 34.000 empresas formales — récord de los últimos 10 años.',
+        'Si sube sin reformas paralelas: el ciclo puede ser menos inversión → menos empleo formal → más informalidad.'],
+   ops:[{t:'Sí — el Estado debe redistribuir y crear empleo donde el privado no llega',s:{econ:-2}},{t:'Solo si garantizan eficiencia y transparencia total en el gasto',s:{econ:-1}},{t:'Me preocupa más que ahuyente la inversión que tanto necesitamos',s:{econ:1}},{t:'No — el Estado colombiano no crea empleo real, crea burocracia',s:{econ:2}}]},
+  {n:'05',t:'Perdiste tu trabajo porque tu empresa lo automatizó con IA. ¿Quién debe responder?',
+   ctx:['El BID estima que el 66% de empleos colombianos son automatizables antes de 2035. En call centers y manufactura el riesgo ya es del 85%.',
+        'Hoy: Colombia no tiene legislación sobre automatización ni fondo de transición laboral activo en 2026.',
+        'Sin política: 4.8M de empleos formales podrían desaparecer sin red de protección en la próxima década.'],
+   ops:[{t:'El Estado — debe garantizar ingreso básico y reentrenamiento gratuito',s:{econ:-2}},{t:'Las empresas que automatizan deben pagar la reconversión',s:{econ:-1}},{t:'Responsabilidad compartida: empresa, Estado y trabajador',s:{econ:0}},{t:'Yo mismo — debo anticiparme y reentrenarme antes de que me pase',s:{econ:2}}]},
+ ]},
+{id:'salud',titulo:'Salud',emoji:'🏥',color:'#9b1c1c',num:'04 de 07',
+ intro:'En papel Colombia tiene cobertura universal. En 2026, 11 EPSs liquidadas, listas de espera récord y miles de médicos emigrando. Así está el sistema.',
+ datos:[
+  {i:'⏳',n:'52 días promedio',d:'de espera para cita con especialista en el sistema público en 2026. En zonas rurales supera los 90 días.'},
+  {i:'💊',n:'11 EPSs liquidadas',d:'o en intervención a mayo 2026. Más de 4 millones de colombianos cambiaron de EPS forzosamente este año.'},
+  {i:'✈️',n:'6.800 médicos',d:'colombianos trabajando en el exterior en 2026. España, EE.UU. y Chile. Ganan en promedio 4x más que aquí.'},
+  {i:'📉',n:'$14 billones en deuda',d:'acumulada del sistema de salud a 2026. La reforma lleva 4 años bloqueada mientras el sistema sigue quebrando.'},
+ ],
+ qs:[
+  {n:'01',t:'La reforma elimina las EPSs y pasa todo al Estado. 11 ya quebraron solas. ¿Qué prefieres?',
+   ctx:['Las EPSs cobran 12-15% del presupuesto en administración. En UK y Costa Rica el sistema público tiene listas de espera pero mayor cobertura.',
+        'Hoy: 4.2M de colombianos quedaron sin EPS este año por liquidaciones. El Estado los absorbió de emergencia.',
+        'Sin reforma: para 2028 el 50% de colombianos podría estar sin EPS operativa.'],
+   ops:[{t:'Mejor — el Estado debe garantizar salud sin intermediarios privados',s:{salud:-2}},{t:'Depende de si el Estado tiene capacidad real para hacerlo',s:{salud:-1}},{t:'Peor — el Estado colombiano no tiene esa capacidad institucional hoy',s:{salud:1}},{t:'Peor — prefiero competencia privada con regulación para tener opciones',s:{salud:2}}]},
+  {n:'02',t:'Necesitas una cirugía importante. La lista de espera pública es 9 meses. ¿Qué haces?',
+   ctx:['Se interponen 230.000 tutelas de salud al año. El 94% las gana el paciente — pero demora meses adicionales ejecutarlas.',
+        'Hoy: en clínicas privadas la misma cirugía toma 2-3 semanas pero cuesta entre $18M y $70M COP.',
+        'Sin mejora: las listas de espera crecen al 9% anual. Para 2028 podrían superar los 12 meses promedio.'],
+   ops:[{t:'Espero y pongo tutela — es mi derecho constitucional',s:{salud:-2}},{t:'Busco la cirugía privada aunque tenga que endeudarme',s:{salud:2}},{t:'Busco opciones más baratas en Ecuador o México',s:{salud:1}},{t:'Uso mis contactos para tratar de acelerar el turno',s:{salud:0}}]},
+  {n:'03',t:'Tu hijo/a necesita un medicamento de $3.8M/mes y la EPS dice que no lo cubre. ¿Qué haces primero?',
+   ctx:['Los medicamentos de alto costo son causa #1 de tutelas. El Estado gasta $5.2 billones/año en medicamentos vía tutela.',
+        'Hoy: Colombia no tiene control de precios de medicamentos. El mismo fármaco puede costar 8x más que en Chile.',
+        'Sin regulación: para 2028 el gasto en medicamentos de alto costo superará el presupuesto de atención primaria.'],
+   ops:[{t:'Tutela inmediata — el sistema tiene la obligación legal',s:{salud:-2}},{t:'Lo pago como sea — la salud de mi hijo no puede esperar',s:{salud:1}},{t:'Busco el medicamento genérico o alternativo más accesible',s:{salud:0}},{t:'Acudo a una ONG o a la Supersalud para presionar',s:{salud:-1}}]},
+  {n:'04',t:'¿Pagarías $80.000 COP más al mes en tu plan si eso garantizara cero listas de espera y médicos bien pagos?',
+   ctx:['Un médico especialista recién graduado gana $4.2M/mes — la mitad que en Chile o Perú.',
+        'Hoy: en 2025 salieron 1.400 médicos colombianos al exterior. En 2024 fueron 1.100.',
+        'Sin mejora salarial: la emigración médica continuará acelerándose año a año.'],
+   ops:[{t:'Sí — invertiría en un sistema que realmente funcione',s:{salud:-1,econ:-1}},{t:'Solo si hay garantías reales y mecanismos de control ciudadano',s:{salud:-1}},{t:'No — ya pago suficiente y el servicio sigue siendo malo',s:{salud:1}},{t:'No — el problema es de gestión, no de plata',s:{salud:2}}]},
+  {n:'05',t:'El gobierno ofrece bonos de $9M para médicos que trabajen 3 años en zonas rurales, financiado reduciendo salarios urbanos un 12%. ¿Lo apoyas?',
+   ctx:['En el Chocó hay 1 médico por cada 3.500 habitantes. En Bogotá: 1 por 175.',
+        'Hoy: el 84% de los médicos trabaja en 5 ciudades. Pacífico y Amazonía son zonas de emergencia sanitaria.',
+        'Sin redistribución: la mortalidad por causas evitables en zonas rurales seguirá siendo 4x mayor que en ciudades.'],
+   ops:[{t:'Sí — la inequidad en salud rural es inaceptable',s:{salud:-2}},{t:'Solo si el esquema es voluntario y bien remunerado',s:{salud:-1}},{t:'No — no es justo penalizar a médicos que ya eligieron su destino',s:{salud:1}},{t:'No — el mercado laboral debe definir los incentivos médicos',s:{salud:2,econ:1}}]},
+ ]},
+{id:'agro',titulo:'Agricultura',emoji:'🌾',color:'#854d0e',num:'05 de 07',
+ intro:'Colombia tiene tierra para alimentarse sola y exportar. Pero importa el 14% de sus alimentos, la coca sigue siendo el mejor negocio rural y el 80% de la tierra está en manos del 1%.',
+ datos:[
+  {i:'🌱',n:'14% de alimentos importados',d:'Colombia importa maíz, trigo, soya y arroz siendo un país con todo para producirlos. Los precios de alimentos subieron 31% entre 2022 y 2026.'},
+  {i:'🏠',n:'Gini de tierra: 0.89',d:'La concentración de tierra en Colombia es de las más extremas del mundo. Reforma agraria lleva 60 años prometida.'},
+  {i:'🌿',n:'253.000 hectáreas de coca',d:'Récord histórico a mayo 2026. Para 400.000 familias rurales, la coca paga más que cualquier cultivo legal accesible.'},
+  {i:'👨‍🌾',n:'Solo el 15% tecnificado',d:'El 85% de los pequeños agricultores trabaja sin tecnología, riego ni crédito formal. Productividad agrícola 40% menor que el promedio latinoamericano.'},
+ ],
+ qs:[
+  {n:'01',t:'El tomate, la papa y el arroz costaron 30% más este año en tu mercado de barrio. ¿Quién tiene la culpa principal?',
+   ctx:['Colombia importa insumos agrícolas en dólares. Con el dólar a $4.400 COP, el costo de producir subió 28%.',
+        'Hoy: los intermediarios se quedan con el 60% del precio final. El agricultor recibe $300 por un kilo de tomate que en tienda vale $3.200.',
+        'Sin acción: para 2028 Colombia podría importar el 20% de sus alimentos básicos con mayor exposición a crisis globales.'],
+   ops:[{t:'El gobierno — debe subsidiar al pequeño agricultor y romper la cadena de intermediarios',s:{agro:-2}},{t:'Los intermediarios y grandes cadenas — hay que regularlos con tope de márgenes',s:{agro:-1}},{t:'El mercado — si el precio sube, más gente producirá y bajará solo',s:{agro:1}},{t:'Nosotros — comprando directo al productor y apoyando mercados campesinos',s:{agro:0}}]},
+  {n:'02',t:'Un campesino en el Caquetá tiene 3 opciones: coca ($8M/año), cacao con subsidio ($3.2M/año) o vender la tierra e irse a la ciudad. ¿Qué le aconsejarías?',
+   ctx:['El programa de sustitución ofrece $3.5M/año por 4 años. Pero el 42% de participantes regresa a la coca por inseguridad y falta de vías.',
+        'Hoy: el 78% de los municipios cocaleros no tiene vía pavimentada para sacar cosechas legales al mercado.',
+        'Sin infraestructura: la sustitución seguirá fracasando. La coca pagará siempre más mientras no haya mercado accesible para lo legal.'],
+   ops:[{t:'Que siembre cacao con el subsidio — la coca es un callejón sin salida',s:{agro:-2,paz:1}},{t:'Que exija primero vías y mercado garantizado antes de cambiar',s:{agro:-1}},{t:'Que venda si consigue precio justo — el campo sin Estado no funciona',s:{agro:1}},{t:'Que tome sus propias decisiones — es su tierra y su vida',s:{agro:2}}]},
+  {n:'03',t:'Una empresa extranjera quiere 50.000 hectáreas en el Llano para palma aceitera. Genera 2.000 empleos formales. ¿Lo apruebas?',
+   ctx:['La palma da 4 empleos por cada 100 ha vs 12 empleos de la agricultura familiar en las mismas 100 ha.',
+        'Hoy: el 31% de las tierras productivas de Colombia ya pertenece a empresas extranjeras o fondos de inversión.',
+        'Sin regulación: la agroindustria puede ser eficiente pero históricamente ha desplazado comunidades y agotado acuíferos.'],
+   ops:[{t:'No — 2.000 empleos no compensan perder tierra para agricultores locales',s:{agro:-2}},{t:'Solo si hay consulta previa real y beneficios directos a comunidades locales',s:{agro:-1}},{t:'Sí — el empleo formal en el campo es escaso y hay que atraerlo',s:{agro:1}},{t:'Sí — la agroindustria tecnificada es lo que necesita el campo colombiano',s:{agro:2}}]},
+  {n:'04',t:'El gobierno propone redistribuir 3 millones de hectáreas en 5 años con compensación a dueños actuales. ¿La apoyas?',
+   ctx:['Colombia tiene el Gini de tierra más alto de Latinoamérica. Las reformas de Brasil (2003) y Costa Rica (1961) mejoraron productividad y redujeron conflicto.',
+        'Hoy: el Fondo de Tierras lleva 7 años y distribuyó solo el 12% de lo prometido.',
+        'Sin reforma: la concentración seguirá siendo motor #1 del desplazamiento forzado y del reclutamiento guerrillero.'],
+   ops:[{t:'Sí — la concentración de tierra es el problema de raíz de Colombia',s:{agro:-2,paz:1}},{t:'Solo si la compensación es justa y el proceso es rápido y transparente',s:{agro:-1}},{t:'No — el Estado no tiene capacidad de redistribuir tierra eficientemente',s:{agro:1}},{t:'No — redistribuir sin capital ni tecnología no sirve de nada',s:{agro:2}}]},
+  {n:'05',t:'Colombia puede ser autosuficiente en alimentos en 10 años con inversión en riego, vías y tecnología. ¿Cuánto pagarías en impuestos para lograrlo?',
+   ctx:['Un plan de autosuficiencia costaría ~$8 billones COP en 10 años. Los alimentos importados le cuestan hoy $12 billones/año en divisas.',
+        'Hoy: el presupuesto de agricultura 2026 es el más bajo en proporción al PIB de los últimos 15 años.',
+        'Sin inversión: Colombia seguirá importando alimentos a precios internacionales con mayor exposición a crisis de suministro global.'],
+   ops:[{t:'Pagaría hasta un 3% más si el dinero va directo al campo con auditoría',s:{agro:-2,econ:-1}},{t:'Pagaría solo si hay control real de resultados medibles',s:{agro:-1}},{t:'No pagaría más — que el gobierno reordene lo que ya recauda',s:{agro:1}},{t:'No — ese problema debe resolverlo el mercado privado',s:{agro:2,econ:1}}]},
+ ]},
+{id:'amb',titulo:'Energía y Ambiente',emoji:'🌿',color:'#14532d',num:'06 de 07',
+ intro:'Colombia tiene el 10% de la biodiversidad del planeta. También tiene minería ilegal que destruye ríos, petróleo que se acaba y un Amazonas que en 2024 emitió más CO₂ del que absorbió por primera vez.',
+ datos:[
+  {i:'🌎',n:'10% del planeta',d:'de biodiversidad en el 0.7% del territorio. El 20% del agua dulce de Suramérica nace en Colombia.'},
+  {i:'🪓',n:'154.000 ha de bosque',d:'destruidas solo en 2025 — récord en 8 años. El 74% es por ganadería extensiva y minería ilegal.'},
+  {i:'☠️',n:'Mercurio irreversible',d:'El 70% de los niños en zonas mineras del Chocó supera el límite OMS de mercurio en sangre en 2026.'},
+  {i:'⚡',n:'La Guajira: paradoja',d:'Tiene el mayor potencial eólico de Latinoamérica pero el 45% de sus niños Wayuu sufre desnutrición.'},
+ ],
+ qs:[
+  {n:'01',t:'La minería ilegal opera en el río de tu región. Destruye el agua con mercurio pero da trabajo a 600 familias que no tienen otra opción. ¿Qué haces?',
+   ctx:['La minería ilegal genera ~$4.800M USD al año — el segundo ingreso ilegal más grande tras el narcotráfico.',
+        'Hoy: el Estado erradicó solo el 4% de la minería ilegal detectada en 2025. La corrupción local protege la mayoría.',
+        'Si continúa: en 8 años el 65% de los ríos en zonas mineras superarán límites seguros de mercurio de forma permanente.'],
+   ops:[{t:'La denuncio — el mercurio afecta a toda la región incluidos los mismos mineros',s:{amb:3}},{t:'Exijo al gobierno alternativas económicas reales antes de cerrarla',s:{amb:1}},{t:'La tolero — 600 familias sin ingresos es una crisis humanitaria inmediata',s:{amb:-2}},{t:'No es mi problema directo — que el gobierno actúe',s:{amb:-1}}]},
+  {n:'02',t:'Tu factura de energía subió 38% en dos años. El gobierno ofrece paneles solares gratis para estratos 1, 2 y 3, financiado con impuesto a carros y motos. ¿Lo apoyas?',
+   ctx:['La Guajira y la Costa tienen irradiación solar entre las 10 más altas del mundo. Un panel solar residencial se paga en 6-8 años.',
+        'Hoy: Colombia subsidia la gasolina con $12 billones/año — más que el presupuesto de renovables desde 2010 hasta hoy.',
+        'Sin diversificación: cada año de El Niño costará más en energía térmica que construir 500 MW solares.'],
+   ops:[{t:'Sí — es una transición justa y necesaria para las familias vulnerables',s:{amb:2,econ:-1}},{t:'Solo si incluye a comunidades indígenas que hoy no tienen luz',s:{amb:2}},{t:'No — un impuesto a motos golpea a quienes dependen de ellas para trabajar',s:{amb:-1,econ:1}},{t:'No — las renovables aún no son confiables como fuente principal',s:{amb:-2,econ:1}}]},
+  {n:'03',t:'Descubres que la carne que compras viene de una finca que deforestó Amazonía. Cuesta $2.000 menos por kilo que la alternativa sostenible. ¿Qué haces?',
+   ctx:['El 60% de la deforestación colombiana es para ganadería extensiva de muy bajo valor: $180 USD/ha/año.',
+        'Hoy: Colombia no tiene trazabilidad obligatoria de carne a mayo 2026. No hay forma de saber el origen.',
+        'Sin trazabilidad: el consumidor colombiano financia deforestación sin saberlo. Europa ya rechaza exportaciones sin certificado.'],
+   ops:[{t:'Compro la sostenible — mis decisiones de compra son actos políticos',s:{amb:2}},{t:'Compro la más barata — con la inflación actual no puedo elegir por principios',s:{amb:-2}},{t:'Exijo al supermercado que informe el origen — es su responsabilidad',s:{amb:1}},{t:'Exijo al gobierno que establezca trazabilidad obligatoria',s:{amb:1}}]},
+  {n:'04',t:'¿Pagarías $15.000 más al mes en el recibo de aseo si eso financia separación de residuos y reciclaje real?',
+   ctx:['Colombia produce 30.000 toneladas de basura al día. Solo el 17% se recicla. Los rellenos de Bogotá, Medellín y Cali están al límite.',
+        'Hoy: Colombia paga el costo ambiental de no reciclar en contaminación de suelos y agua subterránea — pero no aparece en el recibo.',
+        'Sin cambio: en 6 años las principales ciudades no tendrán dónde poner la basura. Las soluciones de emergencia costarán 10x más.'],
+   ops:[{t:'Sí — $15.000 más al mes es razonable para una ciudad que funcione',s:{amb:2,econ:-1}},{t:'Solo si garantizan que el dinero va al reciclaje y no a contratos',s:{amb:1}},{t:'No — el costo de vida ya está muy alto para agregar más',s:{amb:-1,econ:1}},{t:'No — que las empresas que producen el empaque paguen por eso',s:{amb:0}}]},
+  {n:'05',t:'Colombia puede abrir el fracking con regulación estricta (ingresos mientras construye renovables) o mantenerlo prohibido y acelerar la transición. ¿Qué prefieres?',
+   ctx:['EE.UU. y Argentina demostraron que el fracking con regulación independiente real funciona. El problema de Colombia es institucional: la ANLA solo inspecciona el 8% de proyectos. Fortalecer el regulador costaría ~$800M USD.',
+        'Hoy: sin petróleo ni fracking, el déficit fiscal de 2033 sería del 6% del PIB — recorte severo en salud, educación y subsidios.',
+        'Sin decisión: la incertidumbre ya ahuyentó $3.200M USD en inversión energética en 2025.'],
+   ops:[{t:'Abrir el fracking pero primero fortalecer el regulador con recursos y dientes reales',s:{econ:1,amb:0}},{t:'Abrirlo con las condiciones actuales — necesitamos los ingresos ya',s:{econ:2,amb:-2}},{t:'Mantenerlo prohibido y acelerar renovables aunque haya más déficit',s:{econ:-1,amb:2}},{t:'Mantenerlo prohibido hasta tener regulación comparable a EE.UU. o Argentina',s:{econ:-1,amb:1}}]},
+  {n:'06',t:'En tu barrio proponen reemplazar un parque por un edificio de 200 apartamentos de interés social. ¿Lo apruebas?',
+   ctx:['Colombia tiene déficit de 1.8M de viviendas. Bogotá, Medellín y Cali perdieron el 18% de su espacio verde en los últimos 10 años.',
+        'Hoy: el 65% de los parques urbanos están en estratos 4, 5 y 6. Los estratos bajos ya tienen poco espacio verde.',
+        'Sin regulación: las ciudades serán 3°C más calientes en 2040 por el efecto isla de calor de la densificación sin planificación.'],
+   ops:[{t:'No — los parques son salud pública. Los edificios pueden ir en otro lado',s:{amb:2}},{t:'Sí — 200 familias sin vivienda digna son una urgencia mayor',s:{amb:-1}},{t:'Solo si construyen parque compensatorio en otro punto del barrio',s:{amb:1}},{t:'Que la comunidad decida — no el alcalde ni yo',s:{amb:0}}]},
+ ]},
+];
+
+// ═══════════════════════════════════════
+// BLOQUE DE TRABAJO (DINÁMICO)
+// ═══════════════════════════════════════
+const WORK_COLOR = '#1e3a5f';
+
+const WORK_PROFILE_QS = [
+ {id:'ws',t:'¿Cuál es tu situación laboral actual?',
+  ops:[
+   {t:'Empleado/a formal del sector privado',v:'priv'},
+   {t:'Empleado/a formal del sector público',v:'pub'},
+   {t:'Independiente / freelance / cuenta propia',v:'indep'},
+   {t:'Dueño/a de negocio o empresa',v:'emp'},
+   {t:'Desempleado/a buscando trabajo activamente',v:'desemp'},
+   {t:'Estudiante / pensionado/a / sin trabajo activo',v:'otro'},
+  ]},
+ {id:'wk',t:'¿En qué sector trabajas (o has trabajado principalmente)?',
+  ops:[
+   {t:'💻 Tecnología, sistemas o datos',v:'tech'},
+   {t:'🏥 Salud (médico, enfermero/a, administrativo/a)',v:'salud_w'},
+   {t:'📚 Educación (docente o directivo/a)',v:'educ'},
+   {t:'🌾 Agropecuario o agroindustria',v:'agro_w'},
+   {t:'🏢 Comercio, empresa o pyme',v:'empresa'},
+   {t:'🏗️ Construcción o inmobiliario',v:'const_'},
+   {t:'🎨 Creativo, medios o entretenimiento',v:'creativo'},
+   {t:'🛡️ Fuerzas militares o policía',v:'ff'},
+   {t:'🔧 Otro sector',v:'otro_s'},
+  ]},
+ {id:'wst',t:'¿Qué tan estable sientes tu situación económica personal hoy?',
+  ops:[
+   {t:'Muy estable — tengo ahorro y no me preocupa',v:'3'},
+   {t:'Estable — llego bien a fin de mes',v:'2'},
+   {t:'Inestable — los meses varían mucho',v:'1'},
+   {t:'Muy inestable — estoy en aprietos reales',v:'0'},
+  ]},
+];
+
+const WORK_COND = {
+ tech:[
+  {n:'04',t:'La IA ya automatiza tareas que hacen tus colegas. ¿Qué tan seguro te sientes en tu trabajo en los próximos 3 años?',
+   ctx:['El 66% de los empleos colombianos son automatizables antes de 2035. En tech el riesgo es paradójico: quienes construyen IA también pueden ser reemplazados por ella.',
+        'Hoy: Colombia no tiene fondo de transición laboral ni regulación sobre automatización en 2026.',
+        'Sin política: 480.000 empleos tech de bajo y medio nivel podrían desaparecer antes de 2032 sin red de protección.'],
+   ops:[{t:'Muy amenazado — creo que mi cargo desaparece pronto',s:{econ:-1}},{t:'Algo preocupado pero me adapto activamente',s:{econ:0}},{t:'Tranquilo — mi perfil creativo o estratégico es difícil de automatizar',s:{econ:1}},{t:'Lo veo como oportunidad — quiero trabajar con IA, no contra ella',s:{econ:2}}]},
+  {n:'05',t:'Puedes trabajar para empresa extranjera desde Colombia ganando en dólares pero sin EPS ni pensión del empleador. ¿Lo harías?',
+   ctx:['El trabajo remoto internacional creció 340% en Colombia entre 2020 y 2025. El 78% lo hace de forma informal sin protección social.',
+        'Hoy: un desarrollador mid-level gana $4M-$8M en empresa local vs $15M-$25M para empresa extranjera.',
+        'Sin regulación: más de 200.000 colombianos tech trabajan hoy sin prestaciones ni cotización a pensión.'],
+   ops:[{t:'Sí — el mercado libre me da más y yo manejo mi protección social',s:{econ:2}},{t:'Sí, pero exijo que el gobierno regule y proteja estos empleos',s:{econ:-1}},{t:'No — prefiero trabajo local con todas las prestaciones garantizadas',s:{econ:-1}},{t:'Ya lo hago — y no lo reporto porque el sistema formal no vale la pena',s:{econ:1}}]},
+  {n:'06',t:'El mejor talento tech colombiano se va al exterior. Para retenerlo, ¿qué debería hacer el gobierno?',
+   ctx:['Colombia pierde 8.000 profesionales tech al exterior cada año. El salario promedio tech en España o EE.UU. es 5-8x el colombiano.',
+        'Hoy: no hay política activa de retención de talento digital. Otros países tienen visas de nómada digital activas.',
+        'Sin acción: Colombia seguirá formando talento que financia Europa y EE.UU. sin retorno de ese capital humano.'],
+   ops:[{t:'Crear zonas especiales con exenciones para empresas tech que paguen salarios competitivos',s:{econ:1}},{t:'Invertir masivamente en educación tech para que haya más oferta local',s:{econ:-1}},{t:'Nada — la libertad de trabajo incluye irse cuando uno quiere',s:{econ:2}},{t:'Regular para que empresas extranjeras que contraten colombianos tributen aquí',s:{econ:-1}}]},
+ ],
+ salud_w:[
+  {n:'04',t:'Tu institución lleva meses con pagos atrasados por la crisis de las EPSs. ¿Qué haces?',
+   ctx:['Las EPSs deben $8.2 billones COP a clínicas y hospitales a mayo 2026. Muchos centros no pueden pagar nómina.',
+        'Hoy: el 34% de los trabajadores de salud reportan retrasos en sus salarios en 2026.',
+        'Sin solución: más instituciones cerrarán salas de urgencias — ya cerraron 14 en 2025.'],
+   ops:[{t:'Denuncio y me organizo con colegas — es inaceptable',s:{salud:-2}},{t:'Busco empleo en institución privada o en el exterior',s:{salud:1}},{t:'Aguanto mientras el gobierno soluciona — no hay alternativa fácil',s:{salud:0}},{t:'Apoyo la reforma para que el Estado pague directamente sin intermediarios',s:{salud:-2}}]},
+  {n:'05',t:'¿Has pensado seriamente en emigrar a ejercer en el exterior?',
+   ctx:['España, EE.UU. y Chile reclutan médicos colombianos activamente. El salario en España es €3.800/mes vs $4.2M COP aquí.',
+        'Hoy: 6.800 médicos colombianos trabajan en el exterior — un aumento del 38% desde 2022.',
+        'Si sigue: para 2028 Colombia podría tener déficit de 12.000 médicos en zonas rurales y ciudades intermedias.'],
+   ops:[{t:'Sí, ya lo tengo planeado — las condiciones aquí no son dignas',s:{salud:2}},{t:'Lo he pensado pero me quedaría si mejoran las condiciones',s:{salud:1}},{t:'No — tengo compromiso con Colombia aunque sea duro',s:{salud:-1}},{t:'No aplica — mi perfil no me lo permite por ahora',s:{salud:0}}]},
+  {n:'06',t:'La reforma elimina las EPSs. Para ti como trabajador del sector, ¿es buena o mala noticia?',
+   ctx:['Con la reforma, el Estado asumiría la contratación directa de más de 400.000 trabajadores de salud actualmente en EPS.',
+        'Hoy: el 58% de trabajadores de salud tienen contratos por prestación de servicios — sin estabilidad real.',
+        'Con reforma estatal: más estabilidad en teoría, pero históricamente los hospitales públicos pagan peor que el privado.'],
+   ops:[{t:'Buena noticia — el Estado da más estabilidad que las EPSs en quiebra',s:{salud:-2}},{t:'Depende de cómo la implementen — puede ir para cualquier lado',s:{salud:-1}},{t:'Mala noticia — el sector público paga peor y tiene más burocracia',s:{salud:1}},{t:'No cambia nada — el problema es de gestión, no de quién manda',s:{salud:2}}]},
+ ],
+ educ:[
+  {n:'04',t:'¿Las condiciones salariales en tu trabajo docente son dignas o te obligan a buscar ingresos adicionales?',
+   ctx:['Un maestro con 10 años de experiencia gana $3.8M/mes. En Chile el equivalente gana $6.2M. En EE.UU. $18M.',
+        'Hoy: el 48% de los docentes colombianos tiene un segundo trabajo o actividad económica paralela.',
+        'Sin mejora salarial: la docencia seguirá siendo carrera de segunda opción — y la calidad educativa lo reflejará.'],
+   ops:[{t:'Son dignas — me alcanza y estoy satisfecho/a',s:{salud:-1}},{t:'Cubren lo básico pero busco extras para vivir bien',s:{salud:0}},{t:'No son dignas — vivo con estrés financiero constante',s:{salud:1}},{t:'Son inaceptables — considero cambiar de carrera o irme al exterior',s:{salud:2}}]},
+  {n:'05',t:'¿Crees que la calidad de la educación pública colombiana mejoró o empeoró en los últimos 4 años?',
+   ctx:['Las pruebas PISA 2025 mostraron que Colombia bajó 8 puntos vs 2022. La pérdida de aprendizajes post-pandemia no se recupera.',
+        'Hoy: el 42% de los estudiantes de 5° grado no entiende lo que lee — el nivel más bajo en 12 años.',
+        'Sin inversión sostenida: Colombia seguirá en los últimos lugares de PISA en Latinoamérica.'],
+   ops:[{t:'Mejoró — hay más cobertura y recursos que antes',s:{salud:-2}},{t:'Igual — los problemas estructurales no cambian con los gobiernos',s:{salud:0}},{t:'Empeoró — menos inversión real y más politización',s:{salud:1}},{t:'Empeoró mucho — es una crisis que no se atiende con seriedad',s:{salud:2}}]},
+  {n:'06',t:'¿Qué política educativa tendría más impacto real en tu colegio hoy?',
+   ctx:['El 34% de los colegios públicos no tiene conexión a internet adecuada. El 28% no tiene biblioteca funcional.',
+        'Hoy: el presupuesto de educación pública fue recortado un 8% en términos reales en 2026.',
+        'Sin priorización: la brecha entre educación privada y pública seguirá ampliándose desde la infancia.'],
+   ops:[{t:'Más inversión en infraestructura — aulas, libros, computadores e internet',s:{salud:-2}},{t:'Mejor salario para maestros — calidad empieza por el docente',s:{salud:-1}},{t:'Autonomía escolar real — menos centralismo y más decisión local',s:{salud:1}},{t:'Rendición de cuentas con métricas reales de aprendizaje',s:{salud:2}}]},
+ ],
+ agro_w:[
+  {n:'04',t:'¿Tienes acceso real a crédito formal del sistema financiero para tu actividad agrícola?',
+   ctx:['Solo el 18% de los pequeños agricultores tiene acceso a crédito formal en 2026. El resto usa prestamistas informales al 120% anual.',
+        'Hoy: Finagro llega principalmente a medianos y grandes productores — no al campesino pequeño.',
+        'Sin crédito accesible: el pequeño agricultor no puede tecnificarse ni sobrevivir una mala cosecha sin endeudarse con prestamistas.'],
+   ops:[{t:'Sí, tengo acceso y lo uso — el sistema funciona para mí',s:{agro:2}},{t:'Tengo acceso pero los requisitos y tasas no son favorables',s:{agro:1}},{t:'No tengo acceso — uso ahorros o préstamos informales',s:{agro:-1}},{t:'No tengo acceso — es mi principal problema para crecer',s:{agro:-2}}]},
+  {n:'05',t:'¿Los precios que recibes por tu cosecha o producción cubren los costos reales de producción?',
+   ctx:['La cadena de intermediación consume entre el 50% y el 70% del precio final. El agricultor recibe $300 por un kilo de tomate que en tienda vale $3.200.',
+        'Hoy: el costo de insumos agrícolas subió 34% entre 2022 y 2026 por el dólar y la inflación.',
+        'Sin reforma de la cadena: el campesino seguirá siendo el que más trabaja y el que menos gana.'],
+   ops:[{t:'Sí, cubro costos y tengo margen — tengo un negocio viable',s:{agro:2}},{t:'A veces sí, a veces no — depende del año y la cosecha',s:{agro:0}},{t:'Casi nunca — trabajo para pagar deudas más que para ganar',s:{agro:-1}},{t:'No claramente — necesito subsidios o precios de sustentación',s:{agro:-2}}]},
+  {n:'06',t:'¿Qué política cambiaría más tu día a día en el campo?',
+   ctx:['El 78% de los municipios productores no tiene vía pavimentada. El costo del transporte puede comerse el 30% del precio de venta.',
+        'Hoy: el presupuesto de vías rurales fue recortado un 22% en 2026 frente a 2024.',
+        'Sin infraestructura: la coca seguirá siendo competitiva mientras lo legal no llegue al mercado a precio rentable.'],
+   ops:[{t:'Vías rurales — sin mercado accesible no hay negocio legal viable',s:{agro:-2}},{t:'Precios de sustentación y mercado garantizado por el Estado',s:{agro:-2}},{t:'Crédito barato y accesible para todos los productores',s:{agro:-1}},{t:'Tecnología, riego y asistencia técnica para ser más competitivos',s:{agro:1}}]},
+ ],
+ empresa:[
+  {n:'04',t:'¿La carga tributaria actual (renta, ICA, parafiscales) te impide contratar más empleados formales?',
+   ctx:['Contratar un empleado con $2M de salario le cuesta al empleador ~$2.8M con parafiscales. El costo de nómina es 40% mayor que el salario bruto.',
+        'Hoy: Colombia tiene la carga parafiscal más alta de la región — incentivando la informalidad.',
+        'Sin reforma: el 57% de informalidad tiene relación directa con los costos de formalización para pymes.'],
+   ops:[{t:'Sí — por eso prefiero trabajar con independientes o de forma informal',s:{econ:2}},{t:'Sí, es un factor — pero no el único que me frena',s:{econ:1}},{t:'No tanto — el problema mayor es la demanda y el mercado',s:{econ:0}},{t:'No — contrato formal aunque sea más caro porque valoro la fidelización',s:{econ:-1}}]},
+  {n:'05',t:'¿La incertidumbre política y económica del gobierno actual te ha frenado de invertir o expandir tu negocio?',
+   ctx:['La inversión privada cayó 31% entre 2022 y 2025. Las encuestas de confianza empresarial llevan 8 trimestres en zona negativa.',
+        'Hoy: el índice de confianza del empresario está en su punto más bajo desde 2009 (ANDI, mayo 2026).',
+        'Sin recuperar confianza: menos inversión → menos empleo formal → menos recaudo → menos servicios públicos.'],
+   ops:[{t:'Sí, completamente — frené planes de expansión por esto',s:{econ:2}},{t:'Algo — lo tengo en cuenta pero sigo invirtiendo con cautela',s:{econ:1}},{t:'No mucho — mis decisiones dependen más del mercado local',s:{econ:0}},{t:'No — veo oportunidades que otros no están aprovechando',s:{econ:-1}}]},
+  {n:'06',t:'Compites con negocios informales que no pagan impuestos ni prestaciones. ¿Qué debería hacer el gobierno?',
+   ctx:['El 57% de la economía colombiana es informal. Los negocios informales tienen ventaja de costo del 25-40% sobre los formales.',
+        'Hoy: la DIAN solo tiene capacidad para fiscalizar el 3% de los contribuyentes potenciales.',
+        'Sin control de informalidad: el Estado recauda menos, los formales compiten en desventaja y el círculo vicioso continúa.'],
+   ops:[{t:'Formalizar con incentivos — hacer la formalidad más barata, no más cara',s:{econ:1}},{t:'Mayor control y sanciones reales a quien opera informal',s:{econ:2}},{t:'Reducir los costos de ser formal para igualar las condiciones',s:{econ:2}},{t:'Aceptar la informalidad como parte de la realidad colombiana',s:{econ:-1}}]},
+ ],
+ pub:[
+  {n:'04',t:'¿Has sentido presión política en tu trabajo durante el gobierno actual?',
+   ctx:['Desde 2022 se registraron más de 3.400 cambios de directores en entidades públicas por alineación política (Contraloría).',
+        'Hoy: el 41% de empleados públicos reportan presión política directa en sus cargos (Transparencia por Colombia, 2026).',
+        'Sin meritocracia: el Estado seguirá siendo ineficiente porque los cargos se dan por lealtad, no por competencia.'],
+   ops:[{t:'Sí, claramente — y me ha afectado directamente',s:{econ:2}},{t:'Lo he visto con colegas pero no me tocó personalmente',s:{econ:1}},{t:'No, en mi entidad las cosas funcionan con independencia',s:{econ:0}},{t:'No aplica — mi cargo es de carrera administrativa protegido',s:{econ:-1}}]},
+  {n:'05',t:'¿Crees que tu entidad usa eficientemente el presupuesto público que le asignan?',
+   ctx:['La Contraloría estimó que en 2025 se perdieron $18 billones COP en contratos con irregularidades.',
+        'Hoy: Colombia tiene índice de 39/100 en percepción de corrupción (Transparencia Internacional 2025) — peor que el promedio OCDE de 65/100.',
+        'Sin control del gasto: cada billón malgastado es un hospital sin construir o una escuela sin dotación.'],
+   ops:[{t:'No — hay mucho desperdicio y contratos innecesarios',s:{econ:1}},{t:'Regular — algunas áreas bien, otras con problema',s:{econ:0}},{t:'Sí en general — mi entidad tiene controles razonables',s:{econ:-1}},{t:'Prefiero no opinar sobre mi entidad específica',s:{econ:0}}]},
+  {n:'06',t:'Si el próximo gobierno cambia de partido, ¿sientes que tu trabajo estaría en riesgo?',
+   ctx:['Colombia no tiene servicio civil meritocrático consolidado. El 67% de los cargos públicos no son de carrera — pueden cambiarse libremente.',
+        'Hoy: cada cambio de gobierno trae en promedio 40.000 cambios de funcionarios en el primer año.',
+        'Sin reforma del servicio civil: la continuidad institucional seguirá siendo víctima de los ciclos electorales.'],
+   ops:[{t:'Sí, completamente — sé que mi cargo es político',s:{paz:-1,econ:1}},{t:'Algo — depende de quién llegue y cómo lo maneje',s:{paz:0}},{t:'No — tengo carrera administrativa o perfil muy técnico',s:{paz:0}},{t:'No me importa — si cambian, que cambien',s:{paz:1}}]},
+ ],
+ desemp:[
+  {n:'04',t:'¿Cuánto tiempo llevas buscando trabajo activamente?',
+   ctx:['El desempleo de larga duración (más de 6 meses) afecta al 38% de los desempleados colombianos en 2026.',
+        'Hoy: los sectores que más destruyeron empleo en 2025 fueron manufactura (-45.000), construcción (-31.000) y comercio (-28.000).',
+        'Sin política de empleo activa: el desempleo juvenil (19%) seguirá siendo el doble del promedio — una generación en riesgo de informalidad permanente.'],
+   ops:[{t:'Menos de 3 meses — llevo poco y estoy optimista',s:{econ:0}},{t:'Entre 3 y 6 meses — ya empieza a preocuparme',s:{econ:-1}},{t:'Más de 6 meses — ya perdí parte de la esperanza',s:{econ:-2}},{t:'No estoy buscando activamente — evalúo opciones',s:{econ:0}}]},
+  {n:'05',t:'¿Qué es lo que más te ha impedido conseguir trabajo formal?',
+   ctx:['El 43% de los desempleados no tiene el nivel educativo que piden las ofertas. El 31% dice que los salarios ofrecidos no cubren sus gastos básicos.',
+        'Hoy: las plataformas de delivery son el empleador de último recurso para el 22% de los desempleados en ciudades grandes.',
+        'Sin reforma: la trampa de informalidad se perpetúa — sin historial formal no hay crédito, sin crédito no hay negocio.'],
+   ops:[{t:'Los requisitos piden experiencia que no tengo — círculo imposible',s:{econ:-1}},{t:'Los salarios ofrecidos no cubren mis gastos básicos reales',s:{econ:-2}},{t:'Falta de conexiones — el mercado laboral funciona por palancas',s:{econ:-1}},{t:'Razones personales o de salud — no es solo el mercado',s:{econ:0}}]},
+  {n:'06',t:'Si el gobierno ofrece un curso de reentrenamiento gratuito de 6 meses con subsidio de $800.000/mes, ¿lo tomarías?',
+   ctx:['Colombia invierte solo el 0.04% del PIB en programas activos de empleo — 10 veces menos que el promedio OCDE.',
+        'Hoy: el SENA tiene capacidad para atender el 12% de los desempleados que necesitan reentrenamiento urgente.',
+        'Sin inversión: Colombia seguirá en la trampa baja cualificación → baja productividad → bajos salarios → alta informalidad.'],
+   ops:[{t:'Sí, absolutamente — es justo lo que necesito',s:{econ:-2}},{t:'Sí, si el programa es de calidad real con salida laboral garantizada',s:{econ:-1}},{t:'Depende del área — solo si es en algo con demanda real del mercado',s:{econ:0}},{t:'No — prefiero buscar trabajo solo o hacer algo independiente',s:{econ:2}}]},
+ ],
+ const_:[
+  {n:'04',t:'¿La crisis del sector VIS (vivienda de interés social) ha afectado tus proyectos o trabajo en el último año?',
+   ctx:['El sector constructor cayó 18% en 2025 — la mayor caída en 15 años. 62 proyectos VIS fueron suspendidos por problemas de financiación.',
+        'Hoy: más de 28.000 trabajadores de la construcción quedaron desempleados en 2025 por la crisis del sector.',
+        'Sin recuperación: el déficit de 1.8M de viviendas seguirá creciendo mientras el sector no tenga condiciones para construir.'],
+   ops:[{t:'Sí, directamente — perdí trabajo o proyectos por esto',s:{econ:-2}},{t:'Algo — noto la desaceleración pero sigo trabajando',s:{econ:-1}},{t:'No mucho — me concentro en segmentos distintos al VIS',s:{econ:0}},{t:'Para mí fue indiferente — mi trabajo no depende de eso',s:{econ:1}}]},
+  {n:'05',t:'Los materiales de construcción subieron 41% en 3 años. ¿Cómo lo estás manejando?',
+   ctx:['Cemento, hierro y PVC subieron más del 40% entre 2022 y 2025 por el dólar y los fletes internacionales.',
+        'Hoy: el 34% de las obras en construcción están por encima del presupuesto original por el alza de materiales.',
+        'Sin política de insumos: Colombia seguirá importando materiales a precio internacional sin producción local competitiva.'],
+   ops:[{t:'Renegociando contratos — los precios originales ya no son viables',s:{econ:-1}},{t:'Asumiendo pérdidas para terminar proyectos comprometidos',s:{econ:-2}},{t:'Trasladando el costo al comprador final — quien puede pagar, paga',s:{econ:1}},{t:'Buscando materiales alternativos o proveedores locales',s:{econ:0}}]},
+  {n:'06',t:'¿Qué política reactivaría más rápido el sector construcción según tu experiencia?',
+   ctx:['En Chile, los subsidios directos a la demanda reactivaron el sector VIS en 18 meses tras la crisis de 2019.',
+        'Hoy: el gobierno tiene $3.2 billones presupuestados para vivienda 2026 pero lleva ejecutado el 22% a mayo.',
+        'Sin ejecución: el déficit habitacional seguirá creciendo mientras el dinero está represado en burocracia.'],
+   ops:[{t:'Subsidios directos a las familias para comprar vivienda — demanda garantizada',s:{econ:-1}},{t:'Reducción de impuestos al sector para bajar precios finales',s:{econ:2}},{t:'Crédito hipotecario subsidiado a tasas del 4-6% para clase media',s:{econ:-1}},{t:'Ejecutar el presupuesto ya asignado — el dinero está, falta gestión',s:{econ:0}}]},
+ ],
+ creativo:[
+  {n:'04',t:'¿La política de economía naranja realmente te ha beneficiado como trabajador creativo?',
+   ctx:['Colombia invirtió $1.4 billones COP en economía naranja entre 2018 y 2026. El sector crece al 4.2% anual.',
+        'Hoy: el 78% de los trabajadores creativos son independientes sin acceso a seguridad social ni estabilidad.',
+        'Sin formalización: el sector seguirá siendo dinámico en facturación pero precario en condiciones laborales reales.'],
+   ops:[{t:'Sí — tengo clientes o acceso que antes no tenía',s:{econ:1}},{t:'Algo — el ambiente es mejor pero las condiciones siguen precarias',s:{econ:0}},{t:'No — los beneficios llegan a las grandes productoras, no a los independientes',s:{econ:-1}},{t:'No sé — nunca tuve claridad de cómo acceder a esos programas',s:{econ:-1}}]},
+  {n:'05',t:'¿Cotizas a pensión y tienes acceso a salud como trabajador independiente?',
+   ctx:['El 82% de los trabajadores independientes del sector creativo no cotiza a pensión regularmente.',
+        'Hoy: con la nueva reforma tributaria, los independientes que ganan más de $4.5M/mes deben cotizar seguridad social completa.',
+        'Sin cotización: el trabajador creativo llegará a los 65 años sin pensión — dependiendo de ahorros propios o la familia.'],
+   ops:[{t:'Sí, cotizo regularmente — lo veo como inversión en mi futuro',s:{econ:-1}},{t:'A veces — cuando me va bien cotizo, cuando no, paro',s:{econ:0}},{t:'No — no tengo ingresos regulares para comprometer una cotización fija',s:{econ:-1}},{t:'No — el sistema pensional colombiano no me va a dar nada de todas formas',s:{econ:1}}]},
+  {n:'06',t:'Con la IA generando imágenes, textos y música en segundos, ¿sientes que tu trabajo creativo está amenazado?',
+   ctx:['Las herramientas de IA generativa redujeron encargos de ilustración freelance un 34% globalmente entre 2023 y 2025.',
+        'Hoy: en Colombia el mercado de diseño y publicidad reporta caída del 18% en tarifas por competencia de IA.',
+        'Sin adaptación: los creativos que no integren IA como herramienta quedarán fuera del mercado en menos de 5 años.'],
+   ops:[{t:'Muy amenazado — ya perdí clientes o proyectos por la IA',s:{econ:-2}},{t:'Algo amenazado — pero creo que el toque humano no se puede replicar',s:{econ:-1}},{t:'No mucho — ya uso IA como herramienta y me da ventaja',s:{econ:1}},{t:'No — mi trabajo es tan específico que la IA no compite conmigo',s:{econ:2}}]},
+ ],
+ ff:[
+  {n:'04',t:'¿Cómo ha afectado la "paz total" tus condiciones de trabajo y seguridad operacional?',
+   ctx:['Durante el proceso de paz total, varios grupos usaron las negociaciones para reorganizarse y expandir territorios.',
+        'Hoy: el 72% de los miembros de las fuerzas militares dice que la paz total debilitó la capacidad operacional (encuesta reservada 2025).',
+        'Si continúa: los grupos seguirán usando negociaciones como escudo mientras consolidan economías ilegales.'],
+   ops:[{t:'Nos ha debilitado — operamos con restricciones mientras el enemigo crece',s:{paz:-2}},{t:'Es mixto — hay zonas con menos conflicto pero otras empeoraron',s:{paz:-1}},{t:'Ha sido neutral — las operaciones siguen su curso normal',s:{paz:0}},{t:'Ha ayudado — menos confrontación directa salva vidas de mi gente',s:{paz:1}}]},
+  {n:'05',t:'¿Cuál es la principal amenaza a la seguridad de Colombia según tu experiencia directa?',
+   ctx:['Las disidencias de las FARC (Iván Mordisco) controlan hoy más territorio que las FARC en 2016. El ELN tiene 6.000 combatientes — el doble que en 2012.',
+        'Hoy: el Clan del Golfo opera en 25 departamentos y recauda más de $6.000M USD al año.',
+        'Sin acción: para 2030 los grupos podrían controlar corredores que mueven el 80% de la droga colombiana al mundo.'],
+   ops:[{t:'Narcoterrorismo (ELN, disidencias) — son el principal motor de violencia',s:{paz:-2}},{t:'Narcotráfico puro (Clan del Golfo) — es lo que más afecta al ciudadano',s:{paz:-1}},{t:'La corrupción institucional — sin ella los grupos no sobrevivirían',s:{paz:0}},{t:'La pobreza y falta de oportunidades — es la raíz de todo lo demás',s:{paz:1}}]},
+  {n:'06',t:'Si el próximo gobierno quiere reiniciar negociaciones con grupos que incumplieron acuerdos anteriores, ¿lo apoyarías?',
+   ctx:['El ELN incumplió los ceses al fuego pactados en 2023, 2024 y 2025. Aun así el gobierno mantuvo las negociaciones abiertas.',
+        'Hoy: el criterio de incumplimiento para suspender negociaciones no está definido legalmente en Colombia.',
+        'Sin criterios claros: los grupos seguirán usando negociaciones tácticamente sin intención real de paz.'],
+   ops:[{t:'No — quien incumple pierde el derecho a negociar. Acción militar.',s:{paz:-2}},{t:'Solo con garantías internacionales verificables y sanciones automáticas',s:{paz:-1}},{t:'Sí con cautela — cerrar la puerta del diálogo siempre cuesta más',s:{paz:1}},{t:'Sí — el costo de la guerra es mayor que el de la negociación',s:{paz:2}}]},
+ ],
+ otro_s:[
+  {n:'04',t:'¿El costo de vida en Colombia en 2026 te permite ahorrar o estás consumiendo tus ahorros?',
+   ctx:['La inflación acumulada 2021-2026 supera el 45%. El poder adquisitivo del salario mínimo cayó 16% en términos reales.',
+        'Hoy: el 54% de los colombianos reporta que sus ingresos no alcanzan para cubrir todos sus gastos básicos (Dane, 2026).',
+        'Sin control de inflación: el 40% de los hogares podría estar en inseguridad alimentaria para 2028.'],
+   ops:[{t:'Ahorro regularmente — tengo disciplina financiera',s:{econ:1}},{t:'Llego justo — sin ahorrar pero sin consumir lo que tenía',s:{econ:0}},{t:'Consumo mis ahorros — los gastos superan los ingresos',s:{econ:-1}},{t:'Ya no tengo ahorros — estoy en deudas',s:{econ:-2}}]},
+  {n:'05',t:'¿Tienes acceso real a crédito bancario cuando lo necesitas?',
+   ctx:['Colombia tiene uno de los spreads bancarios más altos de Latinoamérica. Las tasas de crédito de consumo están entre el 28% y el 45% efectivo anual.',
+        'Hoy: el 38% de los colombianos no tiene cuenta bancaria activa. El 61% de los que la tienen no tiene acceso a crédito formal.',
+        'Sin inclusión financiera: los más vulnerables seguirán pagando 5-10x más en préstamos informales o gota a gota.'],
+   ops:[{t:'Sí, tengo buen historial y acceso sin problema',s:{econ:2}},{t:'Algo — tengo acceso pero las tasas son muy altas',s:{econ:0}},{t:'Con dificultad — me exigen mucho para prestar poco',s:{econ:-1}},{t:'No — el sistema financiero formal está cerrado para mí',s:{econ:-2}}]},
+  {n:'06',t:'¿Has tenido que recurrir a préstamos informales ("gota a gota") en los últimos 2 años?',
+   ctx:['El gota a gota cobra tasas del 100%-300% efectivo anual. Opera en el 78% de los municipios colombianos.',
+        'Hoy: se estima que $8.4 billones COP circulan en el mercado crediticio informal — más que el presupuesto de vivienda.',
+        'Sin inclusión financiera: los gota a gota seguirán siendo el banco de los más pobres a costos que los atrapan en deuda permanente.'],
+   ops:[{t:'No, nunca — tengo acceso al sistema formal',s:{econ:2}},{t:'No, pero conozco personas cercanas que sí',s:{econ:0}},{t:'Sí, en alguna ocasión por emergencia',s:{econ:-1}},{t:'Sí, es parte de mi realidad financiera regular',s:{econ:-2}}]},
+ ],
+};
+
+// Mapeo sector condicional
+function getSectorKey(status, sector) {
+ if(status==='desemp') return 'desemp';
+ if(status==='otro') return 'otro_s';
+ if(sector==='otro_s') return 'otro_s';
+ const map = {tech:'tech',salud_w:'salud_w',educ:'educ',agro_w:'agro_w',
+               empresa:'empresa',const_:'const_',creativo:'creativo',ff:'ff'};
+ return map[sector] || 'otro_s';
+}
+
+const SECTOR_LABELS = {
+ tech:'💻 Tecnología',salud_w:'🏥 Salud',educ:'📚 Educación',agro_w:'🌾 Campo',
+ empresa:'🏢 Empresa',const_:'🏗️ Construcción',creativo:'🎨 Creativo',ff:'🛡️ Fuerzas',
+ priv:'Sector privado',pub:'Sector público',indep:'Independiente',
+ emp:'Empresario/a',desemp:'En búsqueda de empleo',otro:'Estudiante / Pensionado/a',otro_s:'General'
+};
+
+// ═══════════════════════════════════════
+// CANDIDATOS
+// ═══════════════════════════════════════
+const CANDS={
+ cepeda:{n:'Iván Cepeda',p:'Pacto Histórico',pct:'44.6%',c:'#003087',i:'IC',
+  r:'Continuidad del proyecto de Petro: paz negociada, reforma de salud pública, límites al extractivismo y énfasis en derechos sociales.',
+  escandalo:[
+   {i:'⚖️',t:'Investigado por la Corte Suprema en 2019 por presunta manipulación de testigos en el caso Uribe. Archivado sin condena, pero generó cuestionamientos sobre sus métodos políticos.'},
+   {i:'🔗',t:'Nexos documentados con el proceso de paz total: denuncias de que su campaña recibió apoyos de sectores con vínculos en la economía ilegal, no investigadas formalmente a mayo 2026.'},
+   {i:'📋',t:'Viabilidad de propuestas: la reforma de salud lleva 4 años sin implementarse bajo el gobierno que él representa. El historial de ejecución del Pacto Histórico es su mayor cuestionamiento.'},
+  ],
+  pos:{paz:{dir:1,b:'Continúa paz total. Negociación como prioridad.',m:'4 años sin acuerdo firmado. Violencia rural subió durante las negociaciones.'},
+   econ:{dir:-1,b:'Más gasto social, protección laboral y control de precios de medicamentos.',m:'Inversión privada cayó 31% bajo el modelo actual. Déficit fiscal sin plan de reemplazo del petróleo.'},
+   salud:{dir:-1,b:'Reforma elimina EPSs. Sistema público universal.',m:'Sin plan operativo claro. 4 años de debate sin implementación mientras el sistema quiebra.'},
+   agro:{dir:-1,b:'Reforma agraria activa. Sustitución voluntaria de coca con subsidios.',m:'Fondo de Tierras distribuyó el 12% de lo prometido en 7 años. Burocracia sigue frenando la ejecución.'},
+   amb:{dir:1,b:'Límites al fracking. Apoya transición energética y protección amazónica.',m:'Sin plan de financiación concreto. Renovables avanzan lento y el hueco fiscal del petróleo no tiene solución clara.'}}},
+ abelardo:{n:'Abelardo de la Espriella',p:'Defensores de la Patria',pct:'31.6%',c:'#c2410c',i:'AE',
+  r:'Outsider con discurso directo. Mano dura con grupos armados, pragmático en economía y pro-extracción con regulación.',
+  escandalo:[
+   {i:'💰',t:'Abogado de narcoparamilitares y jefes del Clan del Golfo durante años. Defendió a alias "Don Mario" y otros líderes del crimen organizado. Es su historial más cuestionado.'},
+   {i:'🔍',t:'Sin cargos penales propios, pero su red de contactos incluye sectores históricamente ligados al paramilitarismo en la Costa Caribe, según investigaciones periodísticas de 2025.'},
+   {i:'📋',t:'Viabilidad de propuestas: sin partido consolidado, sin experiencia en gobierno y sin equipo técnico visible. El mayor riesgo es que el discurso no tenga respaldo institucional para ejecutarse.'},
+  ],
+  pos:{paz:{dir:-1,b:'Fin de negociación con narcoterroristas. Mayor presión militar.',m:'Sin alternativa de paz concreta. El enfoque militar puro lleva 60 años sin resolver el conflicto.'},
+   econ:{dir:0,b:'Reducción de burocracia y atracción de inversión privada.',m:'Pocas propuestas de detalle verificable. Populismo económico puede costar más de lo que promete.'},
+   salud:{dir:0,b:'Mantiene sistema actual con ajustes graduales.',m:'Sin reforma estructural el sistema sigue quebrando. Las EPSs en quiebra no se resuelven con ajustes menores.'},
+   agro:{dir:1,b:'Pro agroindustria y atracción de inversión privada al campo.',m:'Sin política de reforma agraria real. La concentración de tierra no se resuelve solo con inversión privada.'},
+   amb:{dir:-1,b:'Pro fracking con regulación. Más ingresos fiscales a corto plazo.',m:'Sin garantías de que Colombia tenga la institucionalidad para regularlo. Riesgo de replicar daños de la minería ilegal.'}}},
+ paloma:{n:'Paloma Valencia',p:'Centro Democrático',pct:'14.0%',c:'#881337',i:'PV',
+  r:'Derecha liberal. Mano dura en seguridad, reducción tributaria, sistema de salud mixto y pro-extracción con marco jurídico claro.',
+  escandalo:[
+   {i:'🏛️',t:'Senadora del Centro Democrático, partido del expresidente Uribe, que enfrenta proceso por presuntos nexos con el paramilitarismo y manipulación de testigos (caso activo en la Corte Suprema en 2026).'},
+   {i:'🔗',t:'Sin investigaciones personales activas en su contra, pero carga el estigma político del partido. Varios de sus copartideros han sido condenados por parapolítica en los últimos 10 años.'},
+   {i:'📋',t:'Viabilidad de propuestas: partido con experiencia de gobierno y cuadros técnicos sólidos. La reducción tributaria que propone requiere mayorías en el Congreso que hoy no tiene garantizadas.'},
+  ],
+  pos:{paz:{dir:-1,b:'Rechazo claro a impunidad. Marco judicial más fuerte para crimen organizado.',m:'Sin propuesta de paz alternativa viable. El enfoque represivo no desmantela la economía del narcotráfico.'},
+   econ:{dir:1,b:'Reducción tributaria corporativa. Mayor atracción de inversión extranjera directa.',m:'Menor gasto social en transición. Sin red de protección robusta el ajuste golpea primero a los más vulnerables.'},
+   salud:{dir:1,b:'Sistema mixto con EPSs reguladas. Competencia privada para mejorar calidad.',m:'Sin solución a la quiebra técnica actual de las EPSs ni a la inequidad en cobertura rural.'},
+   agro:{dir:1,b:'Pro agroindustria, seguridad jurídica para la propiedad rural.',m:'Sin mecanismos de redistribución la concentración de tierra seguirá siendo fuente de conflicto estructural.'},
+   amb:{dir:-1,b:'Pro petróleo, carbón y fracking. Seguridad jurídica para inversión extractiva.',m:'Sin plan de transición energética claro. Colombia podría quedar fuera de los mercados verdes del siglo XXI.'}}},
+ fajardo:{n:'Sergio Fajardo',p:'Centro independiente',pct:'2.4%',c:'#4c1d95',i:'SF',
+  r:'Perfil técnico e independiente. Centro moderado, transición planificada y sin ataduras ideológicas extremas.',
+  escandalo:[
+   {i:'⚖️',t:'Investigado y precluido por la Fiscalía en 2022 por presunta financiación irregular de campaña con dineros del Metro de Medellín. Caso cerrado sin condena, pero afectó su imagen en las elecciones de ese año.'},
+   {i:'📉',t:'En las elecciones de 2022 obtuvo solo el 4.2% en segunda vuelta. Su coalición de centro se fragmentó. A mayo 2026 no ha logrado consolidar base electoral más allá del 2.4%.'},
+   {i:'📋',t:'Viabilidad de propuestas: el perfil más técnico y con propuestas más detalladas, pero sin mayorías en el Congreso sus reformas quedarían bloqueadas. El centro históricamente gobierna sin poder legislativo.'},
+  ],
+  pos:{paz:{dir:1,b:'Negociación con condiciones verificables. Ni paz total sin condiciones ni guerra total.',m:'Sin base política sólida. El centro históricamente no logra mayorías en el Congreso para ejecutar.'},
+   econ:{dir:0,b:'Eficiencia del gasto público. Mercado regulado. Énfasis en educación como motor.',m:'Sin propuestas radicales puede no cerrar el déficit fiscal ni el desempleo estructural de forma urgente.'},
+   salud:{dir:0,b:'Reforma gradual. Sistema mixto mejorado sin colapso de transición.',m:'La gradualidad puede ser insuficiente ante la velocidad de quiebra de las EPSs actuales.'},
+   agro:{dir:-1,b:'Énfasis en educación rural, tecnificación y vías. Subsidios condicionados.',m:'Sin reforma agraria real la concentración de tierra seguirá siendo fuente de conflicto.'},
+   amb:{dir:1,b:'Transición energética planificada. Límites al fracking hasta tener regulación madura.',m:'Sin mayoría en el Congreso las reformas ambientales quedarán bloqueadas por los partidos extractivistas.'}}},
+};
+
+const PERFS={
+ prog_amb:{n:'Progresista Ambiental',e:'🌱',c:'#14532d',cand:'cepeda',
+  d:'Crees en el Estado como garante de derechos, en la paz negociada y en la urgencia climática. Priorizas el bienestar colectivo sobre el crecimiento individual a corto plazo.',
+  imp:[{i:'💰',t:'Pagarás más impuestos a corto plazo. Ese es el costo real de esta visión — honesto asumirlo.'},{i:'🌎',t:'Si funciona: en 20 años, menos conflicto, campo productivo y ecosistemas en recuperación.'},{i:'⚠️',t:'Riesgo central: si el Estado es ineficiente, pagas el costo sin recibir el beneficio. Exigir rendición de cuentas no es opcional.'}]},
+ prag_izq:{n:'Pragmático de Izquierda',e:'⚖️',c:'#1e3a8a',cand:'cepeda',
+  d:'Quieres cambio estructural con los pies en la tierra. Apoyas al Estado pero exiges resultados concretos. No te conformas con el discurso.',
+  imp:[{i:'📋',t:'Tu mayor herramienta es la rendición de cuentas. Votar no es suficiente — hay que hacer seguimiento activo.'},{i:'💊',t:'Si la reforma de salud se implementa bien, tu familia accede a servicios sin depender solo del bolsillo.'},{i:'⚠️',t:'Si el gobierno no entrega, no hay excusa ideológica que valga. El costo de la ineficiencia lo paga tu economía.'}]},
+ der_clas:{n:'Derecha Liberal Clásica',e:'🏛️',c:'#881337',cand:'paloma',
+  d:'Confías en el mercado, la propiedad privada y la seguridad jurídica. Quieres un Estado pequeño y eficiente.',
+  imp:[{i:'💰',t:'Menos impuestos significa más dinero disponible hoy e incentivos para que más empresas inviertan y creen empleo.'},{i:'🏥',t:'Riesgo real: sin red de protección estatal fuerte, una crisis de salud o pérdida de empleo puede golpearte muy duro.'},{i:'🔒',t:'Seguridad dura puede reducir crimen visible. Históricamente en Colombia no ha sido suficiente por sí sola.'}]},
+ der_pop:{n:'Derecha Popular',e:'🔥',c:'#c2410c',cand:'abelardo',
+  d:'Estás harto/a del sistema en todos sus lados. Quieres cambio contundente sin rodeos.',
+  imp:[{i:'💥',t:'Un outsider puede romper el statu quo pero también desestabilizar la institucionalidad que protege tu contrato y propiedad.'},{i:'📉',t:'Cambios radicales tienen costos de transición reales: incertidumbre, volatilidad del dólar — todo eso se siente en tus precios.'},{i:'✊',t:'Si tiene equipo técnico sólido el riesgo baja. Si es solo imagen y carisma, el costo lo pagas tú.'}]},
+ ecoreal:{n:'Ecorealista',e:'🔋',c:'#14532d',cand:'fajardo',
+  d:'Entiendes la urgencia ambiental sin dogmatismo. Quieres transición energética planificada y con justicia social.',
+  imp:[{i:'⚡',t:'Pagarás más a corto plazo por energía limpia. El beneficio: agua potable garantizada y nuevas industrias exportadoras.'},{i:'🌾',t:'La transición agroenergética crea empleos rurales reales. Colombia puede ser el Brasil del hidrógeno verde en 15 años.'},{i:'⚠️',t:'Es la apuesta más difícil: los costos son hoy y los beneficios son para el futuro. Requiere paciencia ciudadana.'}]},
+ agrarista:{n:'Agrario Pragmático',e:'🌾',c:'#854d0e',cand:'abelardo',
+  d:'El campo es tu eje. Ves en la reforma agraria, la sustitución real y la autosuficiencia alimentaria las claves del país que quieres.',
+  imp:[{i:'🌱',t:'Si el campo funciona: precios de alimentos más estables, menos coca, menos conflicto rural y más empleo digno.'},{i:'🚜',t:'La apuesta agraria requiere vías, tecnología y crédito — sin los tres, la tierra redistribuida no produce lo suficiente.'},{i:'⚠️',t:'Es la promesa más antigua de Colombia. Exige ver ejecución real, no solo discurso. El historial es frustrante.'}]},
+ lib_mod:{n:'Liberal Moderado',e:'📐',c:'#1e3a8a',cand:'fajardo',
+  d:'Confías en el mercado pero no en los extremos. Quieres eficiencia, reglas claras y menos politización de todo.',
+  imp:[{i:'📊',t:'Buscas impuestos justos + servicios decentes + seguridad sin militarismo. Racional — pero difícil de lograr en Colombia polarizada.'},{i:'🏥',t:'Prefieres sistema mixto de salud. Funciona bien en estabilidad. Vulnerable ante crisis económicas personales severas.'},{i:'⚠️',t:'En Colombia los extremos tienen más votos. El centro a veces no alcanza el poder para ejecutar su visión.'}]},
+ centro:{n:'Centro Técnico',e:'🔬',c:'#374151',cand:'fajardo',
+  d:'No te defines en extremos. Quieres gobierno eficiente, datos sobre ideología y soluciones pragmáticas.',
+  imp:[{i:'📋',t:'Tu lógica es la más racional pero la menos popular en campaña. Un gobierno técnico tiende a ser modesto pero sostenible.'},{i:'🤝',t:'Decisiones equilibradas generan estabilidad institucional — reduce el riesgo de crisis económicas severas.'},{i:'😤',t:'Mayor riesgo cotidiano: frustración constante cuando la política no sigue la lógica. Espera irritarte bastante.'}]},
+};
+
+// ═══════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════
+let S={
+ scores:{paz:5,econ:5,salud:5,agro:5,amb:5},
+ qScores:{},secDone:{},voto:null,
+ workStatus:null,workSector:null,workStability:null,
+};
+// SECS[0]=paz, SECS[1]=econ, SECS[2]=salud, SECS[3]=agro, SECS[4]=amb
+// Flow: paz → workProfile → workCond → econ → salud → agro → amb → vote → result
+const TOTAL_Q = SECS.reduce((a,s)=>a+s.qs.length,0) + 3 + 3 + 3; // +work profile +work cond +vote
+function totalAnswered(){return Object.values(S.secDone).reduce((a,b)=>a+b,0)}
+
+const app=document.getElementById('app');
+function R(html){app.innerHTML=html;window.scrollTo(0,0)}
+
+function topBar(title,color){
+ const pct=Math.round(totalAnswered()/TOTAL_Q*100);
+ return`<div class="tbar"><span class="tbar-t" style="color:${color}">${title}</span><div class="po"><div class="pi" id="pi" style="background:${color};width:${pct}%"></div></div></div>`;
+}
+function updProg(answered,total,key){
+ S.secDone[key]=answered;
+ const pct=Math.round(totalAnswered()/TOTAL_Q*100);
+ const pi=document.getElementById('pi');if(pi)pi.style.width=pct+'%';
+ const btn=document.getElementById('bnext'),ac=document.getElementById('ac');
+ const rem=total-answered;
+ if(answered>=total){if(btn)btn.disabled=false;if(ac)ac.textContent='✓ Todo respondido — puedes continuar';}
+ else{if(btn)btn.disabled=true;if(ac)ac.textContent=`Responde ${rem} pregunta${rem>1?'s':''} más para continuar`;}
+}
+
+// ═══════════════════════════════════════
+// SCREENS
+// ═══════════════════════════════════════
+function showLanding(){
+ R(`<div class="screen on land"><div class="flag"></div><div class="land-body">
+  <div class="badge">Colombia · Elecciones 2026</div>
+  <h1>¿Qué Colombia<br><em>quieres?</em></h1>
+  <p>No es una encuesta de opinión. Es una prueba de coherencia: antes de votar, descubre qué dicen tus decisiones cotidianas sobre tu ideología política real.</p>
+  <div class="chips">
+   <span class="chip">🕊️ Guerra y Paz</span><span class="chip">💼 Tu Trabajo</span>
+   <span class="chip">📊 Economía</span><span class="chip">🏥 Salud</span>
+   <span class="chip">🌾 Agricultura</span><span class="chip">🌿 Energía</span><span class="chip">🗳️ Tu Voto</span>
+  </div>
+  <p style="font-size:13px;margin-bottom:28px;color:rgba(255,255,255,.6)">7 bloques · ~20 min · Perfil ideológico + preguntas personalizadas según tu sector + comparativo de candidatos</p>
+  <button class="btn" onclick="showIntro(0)" style="color:var(--azul)!important">Comenzar →</button>
+ </div></div>`);
+}
+
+function showIntro(idx){
+ const sec=SECS[idx];
+ R(`<div class="screen on si">
+  <div class="si-hero" style="background:${sec.color}">
+   <div class="si-num">${sec.num}</div><span class="si-emoji">${sec.emoji}</span>
+   <h2>${sec.titulo}</h2><p>${sec.intro}</p>
+  </div>
+  <div class="datos">
+   <h3>Lo que deberías saber antes de responder</h3>
+   ${sec.datos.map(d=>`<div class="dato"><span class="di">${d.i}</span><div><div class="dn">${d.n}</div><div class="dd">${d.d}</div></div></div>`).join('')}
+   <div style="margin-top:22px">
+    <button class="btn" onclick="showQs(${idx})" style="background:${sec.color}">Responder preguntas sobre ${sec.titulo} →</button>
+   </div>
+  </div>
+ </div>`);
+}
+
+function showQs(idx){
+ S.secIdx=idx;const sec=SECS[idx];
+ // After paz(0) → work; after amb(4) → vote; otherwise next sec
+ let nextFn,nextLabel;
+ if(idx===SECS.length-1){nextFn='showVote()';nextLabel='Ver mi voto y candidatos →';}
+ else if(idx===0){nextFn='showWorkIntro()';nextLabel='Siguiente: Tu Trabajo →';}
+ else{nextFn=`showIntro(${idx+1})`;nextLabel=`Siguiente: ${SECS[idx+1].titulo} →`;}
+
+ R(`<div class="screen on">${topBar(sec.emoji+' '+sec.titulo,sec.color)}
+  <div class="qw">
+   ${sec.qs.map((q,qi)=>`
+    <div class="qcard" style="animation-delay:${qi*.06}s">
+     <div class="qn" style="color:${sec.color}">${sec.emoji} Pregunta ${q.n}</div>
+     <div class="qt">${q.t}</div>
+     <div class="ctx">
+      <div class="ctx-row c0"><span class="ctx-label">Contexto</span><span class="ctx-text">${q.ctx[0]}</span></div>
+      <div class="ctx-row c1"><span class="ctx-label">Hoy</span><span class="ctx-text">${q.ctx[1]}</span></div>
+      <div class="ctx-row c2"><span class="ctx-label">Si sigue</span><span class="ctx-text">${q.ctx[2]}</span></div>
+     </div>
+     <div class="opts" data-si="${idx}" data-qi="${qi}">
+      ${q.ops.map((op,oi)=>`
+       <label class="ol" style="--sc:${sec.color}">
+        <input type="radio" name="${sec.id}_q${qi}" value="${oi}">
+        <div class="rd"></div><span class="ot">${op.t}</span>
+       </label>`).join('')}
+     </div>
+    </div>`).join('')}
+   <div class="nav">
+    <button class="btn-s" id="bnext" style="background:${sec.color}" onclick="${nextFn}" disabled>${nextLabel}</button>
+    <div class="ac" id="ac">Responde las ${sec.qs.length} preguntas para continuar</div>
+   </div>
+  </div>
+ </div>`);
+
+ document.querySelectorAll('.opts').forEach(grp=>{
+  const si=parseInt(grp.dataset.si),qi=parseInt(grp.dataset.qi),s2=SECS[si];
+  grp.querySelectorAll('.ol').forEach(label=>{
+   label.addEventListener('click',()=>{
+    const inp=label.querySelector('input[type="radio"]');
+    if(!inp)return;
+    grp.querySelectorAll('.ol').forEach(l=>l.classList.remove('sel'));
+    label.classList.add('sel');
+    inp.checked=true;
+    const key=s2.id+'_q'+qi,oi=parseInt(inp.value);
+    if(S.qScores[key])Object.entries(S.qScores[key]).forEach(([ax,d])=>{S.scores[ax]=Math.max(0,Math.min(10,S.scores[ax]-d));});
+    const ns=s2.qs[qi].ops[oi].s;S.qScores[key]=ns;
+    Object.entries(ns).forEach(([ax,d])=>{if(S.scores[ax]!==undefined)S.scores[ax]=Math.max(0,Math.min(10,S.scores[ax]+d));});
+    updProg(document.querySelectorAll('.opts input:checked').length,s2.qs.length,s2.id);
+   });
+  });
+ });
+}
+
+// ═══════════════════════════════════════
+// BLOQUE TRABAJO
+// ═══════════════════════════════════════
+function showWorkIntro(){
+ R(`<div class="screen on si">
+  <div class="si-hero" style="background:${WORK_COLOR}">
+   <div class="si-num">02 de 07</div><span class="si-emoji">💼</span>
+   <h2>Tu Trabajo</h2>
+   <p>Tu situación laboral y el sector donde trabajas cambia completamente cómo te afecta cada política. Aquí las preguntas son para ti.</p>
+  </div>
+  <div class="datos">
+   <h3>Por qué importa tu sector</h3>
+   <div class="dato"><span class="di">👷</span><div><div class="dn">57% de informalidad</div><div class="dd">Más de la mitad de los trabajadores colombianos están por fuera del sistema formal en 2026. Las políticas de empleo no los alcanzan.</div></div></div>
+   <div class="dato"><span class="di">💼</span><div><div class="dn">Cada sector siente diferente</div><div class="dd">Un médico, un agricultor, un programador y un empresario tienen visiones distintas de los mismos problemas. Esta encuesta te pregunta según lo que vives tú.</div></div></div>
+   <div class="dato"><span class="di">📊</span><div><div class="dn">3 preguntas de perfil + 3 personalizadas</div><div class="dd">Primero cuéntanos tu situación. Luego te hacemos preguntas específicas para tu sector y realidad laboral.</div></div></div>
+   <div style="margin-top:22px">
+    <button class="btn" onclick="showWorkProfile()" style="background:${WORK_COLOR}">Responder preguntas de trabajo →</button>
+   </div>
+  </div>
+ </div>`);
+}
+
+function showWorkProfile(){
+ const total=WORK_PROFILE_QS.length;
+ R(`<div class="screen on">${topBar('💼 Tu Trabajo',WORK_COLOR)}
+  <div class="qw">
+   <div class="qcard" style="background:#f0f4ff;border-color:#c7d7fd">
+    <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:${WORK_COLOR};margin-bottom:6px">Tu perfil laboral</div>
+    <div style="font-size:13.5px;color:#444;line-height:1.5">Responde estas 3 preguntas primero. Según tus respuestas, cargaremos preguntas específicas para tu situación.</div>
+   </div>
+   ${WORK_PROFILE_QS.map((q,qi)=>`
+    <div class="qcard" style="animation-delay:${qi*.06}s">
+     <div class="qn" style="color:${WORK_COLOR}">💼 Perfil ${qi+1}</div>
+     <div class="qt">${q.t}</div>
+     <div class="opts" data-wqi="${qi}">
+      ${q.ops.map((op,oi)=>`
+       <label class="ol" style="--sc:${WORK_COLOR}">
+        <input type="radio" name="wp_${qi}" value="${oi}">
+        <div class="rd"></div><span class="ot">${op.t}</span>
+       </label>`).join('')}
+     </div>
+    </div>`).join('')}
+   <div class="nav">
+    <button class="btn-s" id="bnext" style="background:${WORK_COLOR}" onclick="showWorkCond()" disabled>Ver mis preguntas personalizadas →</button>
+    <div class="ac" id="ac">Responde las 3 preguntas de perfil para continuar</div>
+   </div>
+  </div>
+ </div>`);
+
+ document.querySelectorAll('.opts[data-wqi]').forEach(grp=>{
+  const qi=parseInt(grp.dataset.wqi);
+  grp.querySelectorAll('.ol').forEach(label=>{
+   label.addEventListener('click',()=>{
+    const inp=label.querySelector('input[type="radio"]');
+    if(!inp)return;
+    grp.querySelectorAll('.ol').forEach(l=>l.classList.remove('sel'));
+    label.classList.add('sel');
+    inp.checked=true;
+    const v=WORK_PROFILE_QS[qi].ops[parseInt(inp.value)].v;
+    if(qi===0)S.workStatus=v;
+    else if(qi===1)S.workSector=v;
+    else if(qi===2)S.workStability=v;
+    const answered=document.querySelectorAll('.opts[data-wqi] input:checked').length;
+    updProg(answered,total,'workP');
+   });
+  });
+ });
+}
+
+function showWorkCond(){
+ const sectorKey=getSectorKey(S.workStatus,S.workSector);
+ const qs=WORK_COND[sectorKey]||WORK_COND.otro_s;
+ const statusLabel=SECTOR_LABELS[S.workStatus]||'';
+ const sectorLabel=SECTOR_LABELS[S.workSector]||'';
+ const total=qs.length;
+
+ R(`<div class="screen on">${topBar('💼 Tu Sector',WORK_COLOR)}
+  <div class="qw">
+   <div class="qcard" style="background:#f0f4ff;border-color:#c7d7fd">
+    <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:${WORK_COLOR};margin-bottom:8px">Preguntas personalizadas para ti</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+     <span class="work-pill" style="background:${WORK_COLOR}">${statusLabel}</span>
+     ${sectorLabel?`<span class="work-pill" style="background:#374151">${sectorLabel}</span>`:''}
+    </div>
+    <div style="font-size:13px;color:#555;margin-top:10px;line-height:1.5">Estas preguntas están basadas en lo que reportan personas en tu misma situación. Sin filtro.</div>
+   </div>
+   ${qs.map((q,qi)=>`
+    <div class="qcard" style="animation-delay:${qi*.06}s">
+     <div class="qn" style="color:${WORK_COLOR}">💼 Pregunta ${q.n}</div>
+     <div class="qt">${q.t}</div>
+     <div class="ctx">
+      <div class="ctx-row c0"><span class="ctx-label">Contexto</span><span class="ctx-text">${q.ctx[0]}</span></div>
+      <div class="ctx-row c1"><span class="ctx-label">Hoy</span><span class="ctx-text">${q.ctx[1]}</span></div>
+      <div class="ctx-row c2"><span class="ctx-label">Si sigue</span><span class="ctx-text">${q.ctx[2]}</span></div>
+     </div>
+     <div class="opts" data-wcqi="${qi}">
+      ${q.ops.map((op,oi)=>`
+       <label class="ol" style="--sc:${WORK_COLOR}">
+        <input type="radio" name="wc_${qi}" value="${oi}">
+        <div class="rd"></div><span class="ot">${op.t}</span>
+       </label>`).join('')}
+     </div>
+    </div>`).join('')}
+   <div class="nav">
+    <button class="btn-s" id="bnext" style="background:${WORK_COLOR}" onclick="showIntro(1)" disabled>Siguiente: Economía →</button>
+    <div class="ac" id="ac">Responde las ${total} preguntas para continuar</div>
+   </div>
+  </div>
+ </div>`);
+
+ const sectorQDefs=qs;
+ document.querySelectorAll('.opts[data-wcqi]').forEach(grp=>{
+  const qi=parseInt(grp.dataset.wcqi);
+  grp.querySelectorAll('.ol').forEach(label=>{
+   label.addEventListener('click',()=>{
+    const inp=label.querySelector('input[type="radio"]');
+    if(!inp)return;
+    grp.querySelectorAll('.ol').forEach(l=>l.classList.remove('sel'));
+    label.classList.add('sel');
+    inp.checked=true;
+    const key='wc_q'+qi,oi=parseInt(inp.value);
+    if(S.qScores[key])Object.entries(S.qScores[key]).forEach(([ax,d])=>{S.scores[ax]=Math.max(0,Math.min(10,S.scores[ax]-d));});
+    const ns=sectorQDefs[qi].ops[oi].s;S.qScores[key]=ns;
+    Object.entries(ns).forEach(([ax,d])=>{if(S.scores[ax]!==undefined)S.scores[ax]=Math.max(0,Math.min(10,S.scores[ax]+d));});
+    updProg(document.querySelectorAll('.opts[data-wcqi] input:checked').length,total,'workC');
+   });
+  });
+ });
+}
+
+// ═══════════════════════════════════════
+// VOTO
+// ═══════════════════════════════════════
+function showVote(){
+ const col='#003087';
+ R(`<div class="screen on">${topBar('🗳️ Tu Voto',col)}
+  <div class="qw">
+   <div class="qcard">
+    <div class="qn" style="color:${col}">🗳️ Pregunta 01</div>
+    <div class="qt">¿Piensas votar el 31 de mayo de 2026?</div>
+    <div class="opts" id="vq1">
+     ${['Sí, seguro — ya tengo decidido mi voto','Probablemente sí, pero aún no sé por quién','No estoy seguro/a todavía','No pienso votar'].map((t,i)=>`
+      <label class="ol" style="--sc:${col}"><input type="radio" name="vq1" value="${i}"><div class="rd"></div><span class="ot">${t}</span></label>`).join('')}
+    </div>
+   </div>
+   <div class="qcard" style="animation-delay:.08s">
+    <div class="qn" style="color:${col}">🗳️ Pregunta 02</div>
+    <div class="qt">De los 4 candidatos punteros según Invamer, ¿por cuál votarías hoy?</div>
+    <div class="ctx">
+     <div class="ctx-row c0"><span class="ctx-label">Contexto</span><span class="ctx-text">Datos reales Invamer 21 de mayo 2026. Primera vuelta presidencial.</span></div>
+     <div class="ctx-row c1"><span class="ctx-label">Hoy</span><span class="ctx-text">Abelardo creció 10 puntos en un mes. Paloma bajó 5.8. Fajardo no despega del 2.4%.</span></div>
+    </div>
+    <div class="opts" id="vq2">
+     ${Object.entries(CANDS).map(([k,c])=>`
+      <label class="ol" style="--sc:${c.c}"><input type="radio" name="vq2" value="${k}"><div class="rd"></div>
+       <span class="ot"><strong>${c.n}</strong> — ${c.p}
+        <span style="display:block;margin-top:3px"><span style="background:${c.c}18;color:${c.c};font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;display:inline-block">${c.pct} Invamer</span></span>
+       </span></label>`).join('')}
+     <label class="ol" style="--sc:#6b7280"><input type="radio" name="vq2" value="blanco"><div class="rd"></div><span class="ot">Voto en blanco / ninguno de los anteriores</span></label>
+    </div>
+   </div>
+   <div class="qcard" style="animation-delay:.16s">
+    <div class="qn" style="color:${col}">🗳️ Pregunta 03</div>
+    <div class="qt">¿Cuánto crees que tu voto realmente cambia algo en Colombia?</div>
+    <div class="opts" id="vq3">
+     ${['Mucho — cada voto construye el país que queremos','Algo — al menos pone límites y envía señales políticas','Poco — hay fuerzas más grandes que el voto','Nada — todo ya está decidido de antemano'].map((t,i)=>`
+      <label class="ol" style="--sc:${col}"><input type="radio" name="vq3" value="${i}"><div class="rd"></div><span class="ot">${t}</span></label>`).join('')}
+    </div>
+   </div>
+   <div class="nav">
+    <button class="btn-s" id="bnext" style="background:${col}" onclick="showResult()" disabled>Ver mi perfil político →</button>
+    <div class="ac" id="ac">Responde las 3 preguntas para ver tu resultado</div>
+   </div>
+  </div>
+ </div>`);
+
+ let va=0;
+ ['vq1','vq2','vq3'].forEach(gid=>{
+  document.querySelectorAll('#'+gid+' .ol').forEach(label=>{
+   label.addEventListener('click',()=>{
+    const inp=label.querySelector('input[type="radio"]');
+    if(!inp)return;
+    document.querySelectorAll('#'+gid+' .ol').forEach(l=>l.classList.remove('sel'));
+    label.classList.add('sel');
+    inp.checked=true;
+    if(gid==='vq2')S.voto=inp.value;
+    va=['vq1','vq2','vq3'].filter(g=>document.querySelector('#'+g+' input:checked')).length;
+    S.secDone['vote']=va;
+    const pi=document.getElementById('pi');if(pi)pi.style.width=Math.round(totalAnswered()/TOTAL_Q*100)+'%';
+    const btn=document.getElementById('bnext'),ac=document.getElementById('ac');
+    if(va>=3){if(btn)btn.disabled=false;if(ac)ac.textContent='✓ Todo respondido';}
+    else{if(btn)btn.disabled=true;if(ac)ac.textContent=`Responde ${3-va} pregunta${3-va>1?'s':''} más`;}
+   });
+  });
+ });
+}
+
+// ═══════════════════════════════════════
+// RESULTADO
+// ═══════════════════════════════════════
+function getProfile(){
+ const{paz,econ,salud,agro,amb}=S.scores;
+ if(agro<=3&&(paz<=5||econ>=6))return'agrarista';
+ if(paz>=7&&amb>=7&&econ<=5)return'prog_amb';
+ if(paz>=6&&econ<=5&&amb>=4)return'prag_izq';
+ if(paz<=3&&econ>=7)return'der_clas';
+ if(paz<=4&&amb<=4)return'der_pop';
+ if(amb>=7&&econ>=5)return'ecoreal';
+ if(Math.abs(paz-5)<=2&&Math.abs(econ-5)<=2&&Math.abs(amb-5)<=2)return'centro';
+ return'lib_mod';
+}
+
+function candCmp(ckey){
+ const axes=[
+  {k:'paz',score:S.scores.paz,lbl:'Paz y seguridad'},
+  {k:'econ',score:S.scores.econ,lbl:'Economía'},
+  {k:'salud',score:S.scores.salud,lbl:'Salud'},
+  {k:'agro',score:S.scores.agro,lbl:'Agricultura'},
+  {k:'amb',score:S.scores.amb,lbl:'Ambiente y energía'},
+ ];
+ return axes.map(ax=>{
+  const pos=CANDS[ckey].pos[ax.k];
+  const rawDir=ax.score>6?1:(ax.score<4?-1:0);
+  const userPref=(ax.k==='econ'||ax.k==='salud')?-rawDir:rawDir;
+  let icon,color,txt;
+  if(rawDir===0){icon='⚪';color='#9ca3af';txt='Posición neutral — no hay diferencia significativa para ti aquí.';}
+  else if(userPref===pos.dir){icon='✅';color='#15803d';txt=pos.b;}
+  else if(pos.dir===0){icon='🔶';color='#b45309';txt='Propuesta poco definida — riesgo de ejecución incierta.';}
+  else{icon='⚠️';color='#b91c1c';txt=pos.m;}
+  return`<div class="cmp-row"><span class="cmp-icon">${icon}</span><span style="color:${color}"><strong>${ax.lbl}:</strong> ${txt}</span></div>`;
+ }).join('');
+}
+
+// Calcula el candidato más coherente con los scores por alineación numérica real
+function bestCandByScore(){
+ const{paz,econ,salud,agro,amb}=S.scores;
+ // Para cada candidato suma "puntos de alineación" por eje
+ // dirección del candidato: 1=izq/paz/público/reforma/conserv, -1=der/guerra/privado/agro/extrac, 0=neutro
+ // dirección del usuario: alto score en paz=pacifista(+), alto econ=mercado(-), alto salud=privado(-), alto agro=agro(+?), alto amb=conserv(+)
+ // Convertimos score a dirección: >6→+1, <4→-1, medio→0
+ // Luego comparamos con la posición del candidato en ese eje
+ const userDir={
+  paz: paz>6?1:(paz<4?-1:0),
+  econ: econ>6?-1:(econ<4?1:0),   // alto econ=mercado → quiere candidato dir -1
+  salud: salud>6?-1:(salud<4?1:0), // alto salud=privado → quiere candidato dir -1
+  agro: agro>6?1:(agro<4?-1:0),    // alto agro=agroindustria → quiere candidato dir +1... wait
+  amb: amb>6?1:(amb<4?-1:0),       // alto amb=conservacionista → quiere candidato dir +1
+ };
+ // Note: agro score high = agroindustria (right), low = reforma. So userDir agro: high→wants cand dir +1 (pro-agro)
+ // But cand pos dir for agro: +1=reforma, -1=agro... let's check CANDS: cepeda agro dir:-1 = reforma activa
+ // Wait in CANDS: cepeda agro dir=-1 means state/reform. paloma agro dir=+1 means agro industry.
+ // So high agro score (user wants agroindustria) → wants cand dir +1 → paloma ✓
+ // Low agro score (user wants reform) → wants cand dir -1 → cepeda ✓ — logic is consistent
+
+ const scores={};
+ Object.entries(CANDS).forEach(([k,c])=>{
+  let pts=0;
+  Object.entries(userDir).forEach(([ax,ud])=>{
+   const cd=c.pos[ax]?.dir??0;
+   if(ud===0) return; // user neutral → skip
+   if(ud===cd) pts+=2;       // full alignment
+   else if(cd===0) pts+=0;   // cand neutral → partial
+   else pts-=1;              // misalignment
+  });
+  scores[k]=pts;
+ });
+ // Return key with highest score
+ return Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
+}
+
+function showResult(){
+ const pfk=getProfile(),pf=PERFS[pfk];
+ const recKey=bestCandByScore();           // candidato recomendado por respuestas
+ const recCand=CANDS[recKey];
+ const chosenKey=S.voto&&S.voto!=='blanco'?S.voto:null;
+ const chosenCand=chosenKey?CANDS[chosenKey]:null;
+ const mismatch=chosenKey&&chosenKey!==recKey;
+ const{paz,econ,salud,agro,amb}=S.scores;
+ const statusLabel=SECTOR_LABELS[S.workStatus]||'No especificado';
+ const sectorLabel=SECTOR_LABELS[S.workSector]||'';
+
+ R(`<div class="screen on"><div class="rw">
+  <div class="rh" style="background:${pf.c}">
+   <span class="re">${pf.e}</span>
+   <div class="rb">Tu perfil político</div>
+   <h2>${pf.n}</h2>
+   <p>${pf.d}</p>
+  </div>
+  <div class="rwork">
+   <h3>Tu contexto laboral</h3>
+   <div class="work-tag"><span>💼</span><span>${statusLabel}${sectorLabel?' · '+sectorLabel:''}</span></div>
+   <div style="font-size:13px;color:#555;line-height:1.6">Las preguntas de tu sector afectaron tus ejes de economía, salud y seguridad. Tu perfil refleja tanto tu visión ideológica como las realidades de tu trabajo diario.</div>
+  </div>
+  <div class="raxes">
+   <h3>Tus ejes de valores</h3>
+   <div class="ax"><div class="axl"><span>⬅ Paz negociada</span><span>Mano dura ➡</span></div><div class="axo"><div class="axo-track" style="background:linear-gradient(90deg,#1a5c2a,#7f1d1d)"><div class="ax-marker" id="bp"></div></div></div><div class="ax-val" id="bp-lbl"></div></div>
+   <div class="ax"><div class="axl"><span>⬅ Más Estado</span><span>Más mercado ➡</span></div><div class="axo"><div class="axo-track" style="background:linear-gradient(90deg,#1e3a8a,#92400e)"><div class="ax-marker" id="be"></div></div></div><div class="ax-val" id="be-lbl"></div></div>
+   <div class="ax"><div class="axl"><span>⬅ Salud pública</span><span>Salud privada ➡</span></div><div class="axo"><div class="axo-track" style="background:linear-gradient(90deg,#9b1c1c,#374151)"><div class="ax-marker" id="bs"></div></div></div><div class="ax-val" id="bs-lbl"></div></div>
+   <div class="ax"><div class="axl"><span>⬅ Reforma agraria</span><span>Agroindustria ➡</span></div><div class="axo"><div class="axo-track" style="background:linear-gradient(90deg,#854d0e,#365314)"><div class="ax-marker" id="bag"></div></div></div><div class="ax-val" id="bag-lbl"></div></div>
+   <div class="ax"><div class="axl"><span>⬅ Extractivista</span><span>Conservacionista ➡</span></div><div class="axo"><div class="axo-track" style="background:linear-gradient(90deg,#78350f,#14532d)"><div class="ax-marker" id="ba"></div></div></div><div class="ax-val" id="ba-lbl"></div></div>
+  </div>
+
+  <!-- RECOMENDACIÓN POR RESPUESTAS -->
+  <div class="rcand" style="border-top:3px solid ${recCand.c}">
+   <h3>Candidato que más se alinea con tus decisiones</h3>
+   <div style="font-size:12px;color:#666;margin-bottom:14px;line-height:1.5">
+    Calculado con base en tus ${Object.keys(S.qScores).length} respuestas — no en quién dijiste que ibas a votar.
+    Compara tus posiciones en paz, economía, salud, agricultura y ambiente con las propuestas reales de cada candidato.
+   </div>
+   <div class="cc" style="background:${recCand.c}12;border:2px solid ${recCand.c}">
+    <div class="ci" style="background:${recCand.c};width:52px;height:52px;font-size:1rem">${recCand.i}</div>
+    <div style="flex:1">
+     <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px">
+      <div class="cn" style="color:${recCand.c}">${recCand.n}</div>
+      <span style="background:${recCand.c};color:#fff;font-size:10px;font-weight:800;padding:3px 10px;border-radius:99px">Más coherente con tus respuestas</span>
+     </div>
+     <div style="font-size:11px;color:#aaa;margin-bottom:6px">${recCand.p} · ${recCand.pct} Invamer 21 mayo 2026</div>
+     <div class="cr">${recCand.r}</div>
+    </div>
+   </div>
+   ${mismatch?`
+   <div style="margin-top:16px;padding:14px 16px;background:#fffbeb;border:1px solid #fde68a;border-radius:10px">
+    <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#92400e;margin-bottom:6px">⚠️ Tus respuestas vs tu voto declarado</div>
+    <div style="font-size:13px;color:#78350f;line-height:1.55">
+     Dijiste que votarías por <strong>${chosenCand.n}</strong>, pero tus decisiones en todos los temas apuntan más hacia <strong>${recCand.n}</strong>.
+     Esto no significa que estés equivocado/a — puede haber razones personales, históricas o de confianza que la encuesta no captura.
+     Pero vale la pena preguntarse: <em>¿estás votando por quién crees que mejora tu vida, o por costumbre?</em>
+    </div>
+   </div>`:''}
+   ${!chosenKey?`<div style="margin-top:12px;font-size:12px;color:#888;font-style:italic">No elegiste un candidato en la encuesta — esta es la recomendación basada únicamente en tus respuestas.</div>`:''}
+  </div>
+
+  <!-- CANDIDATO ELEGIDO (si eligió uno diferente) -->
+  ${mismatch?`
+  <div class="rcand">
+   <h3>El candidato que dijiste que ibas a votar</h3>
+   <div class="cc" style="background:${chosenCand.c}08;border:1.5px solid ${chosenCand.c}40">
+    <div class="ci" style="background:${chosenCand.c}">${chosenCand.i}</div>
+    <div>
+     <div class="cn" style="color:${chosenCand.c}">${chosenCand.n}</div>
+     <div style="font-size:11px;color:#aaa;margin-bottom:6px">${chosenCand.p} · ${chosenCand.pct} Invamer 21 mayo 2026</div>
+     <div class="cr">${chosenCand.r}</div>
+    </div>
+   </div>
+  </div>`:''}
+
+  <div class="rimp">
+   <h3>Cómo tus decisiones te afectan en el día a día</h3>
+   ${pf.imp.map(b=>`<div class="ib"><span>${b.i}</span><span>${b.t}</span></div>`).join('')}
+  </div>
+  <div class="rcmp">
+   <h3>Todos los candidatos — qué ganas y qué arriesgas según tus respuestas</h3>
+   ${Object.entries(CANDS).map(([k,c])=>`
+    <div class="cmp-card" style="border-color:${k===recKey?c.c:(k===chosenKey?c.c+'80':'var(--gc)')};${k===recKey?'box-shadow:0 2px 12px '+c.c+'30':''}" >
+     <div class="cmp-header">
+      <div class="cmp-ini" style="background:${c.c}">${c.i}</div>
+      <div><div class="cmp-name" style="color:${c.c}">${c.n}</div><div class="cmp-pct">${c.p} · ${c.pct}</div></div>
+      <div style="margin-left:auto;display:flex;flex-direction:column;gap:4px;align-items:flex-end">
+       ${k===recKey?`<span style="background:${c.c};color:#fff;font-size:10px;font-weight:800;padding:3px 10px;border-radius:99px;white-space:nowrap">✓ Más coherente</span>`:''}
+       ${k===chosenKey?`<span style="background:${c.c}20;color:${c.c};font-size:10px;font-weight:700;padding:3px 10px;border-radius:99px;white-space:nowrap;border:1px solid ${c.c}50">Tu voto declarado</span>`:''}
+      </div>
+     </div>
+     <div class="cmp-rows">${candCmp(k)}</div>
+     <div style="margin-top:12px;padding-top:12px;border-top:1px dashed #e5e5e5">
+      <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#991b1b;margin-bottom:8px">🔍 Antecedentes y viabilidad real</div>
+      ${c.escandalo.map(e=>`<div style="display:flex;gap:8px;margin-bottom:7px;align-items:flex-start"><span style="font-size:.85rem;flex-shrink:0">${e.i}</span><span style="font-size:12px;color:#555;line-height:1.45">${e.t}</span></div>`).join('')}
+     </div>
+    </div>`).join('')}
+  </div>
+  <p class="disc">Resultado basado en tus respuestas · Datos Invamer 21 mayo 2026 · Solo orientativo · No afiliado a ningún candidato</p>
+  <div style="text-align:center;margin-top:20px;padding-bottom:20px">
+   <div style="display:flex;flex-direction:column;gap:12px;max-width:340px;margin:0 auto">
+   <button class="btn" id="restart-btn" onclick="generateResultImage()"
+    style="background:#1e293b;color:#fff!important;display:flex;align-items:center;justify-content:center;gap:8px">
+    <span>⬇️</span> Descargar resultado Imagen
+   </button>
+   <button onclick="restart()" style="background:none;border:1px solid #ccc;color:#888;padding:10px 20px;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px">
+    Reiniciar encuesta
+   </button>
+  </div>
+  </div>
+ </div></div>`);
+
+ // Axes: marker left% + label
+ const AX_DEFS=[
+  {id:'bp', score:(10-paz)/10, lblL:'Paz negociada', lblR:'Mano dura'},
+  {id:'be', score:econ/10,     lblL:'Más Estado',   lblR:'Más mercado'},
+  {id:'bs', score:salud/10,    lblL:'Salud pública', lblR:'Salud privada'},
+  {id:'bag',score:agro/10,     lblL:'Reforma agraria',lblR:'Agroindustria'},
+  {id:'ba', score:amb/10,      lblL:'Extractivista', lblR:'Conservacionista'},
+ ];
+ setTimeout(()=>{
+  AX_DEFS.forEach(ax=>{
+   const pct=Math.round(ax.score*100);
+   const marker=document.getElementById(ax.id);
+   const lbl=document.getElementById(ax.id+'-lbl');
+   if(marker){
+    marker.style.left=pct+'%';
+    // Border color: green if left side (<40%), red if right (>60%), neutral middle
+    marker.style.borderColor=pct<35?'#1a5c2a':pct>65?'#7f1d1d':'#374151';
+   }
+   if(lbl){
+    const side=pct<40?ax.lblL:pct>60?ax.lblR:'Centro';
+    const intensity=Math.abs(pct-50);
+    const word=intensity>30?'Muy inclinado hacia':'Inclinado hacia';
+    lbl.textContent=pct>=45&&pct<=55?'Posición neutral / centro':word+' '+side;
+   }
+  });
+ },350);
+}
+
+function generateResultJSON(){
+ const pfk=getProfile(), pf=PERFS[pfk];
+ const recKey=bestCandByScore();
+ const{paz,econ,salud,agro,amb}=S.scores;
+
+ const axLabels={
+  paz: paz<4?'Muy inclinado hacia Paz negociada':paz>6?'Muy inclinado hacia Mano dura':'Centro / neutral',
+  econ:econ<4?'Muy inclinado hacia Más Estado':econ>6?'Muy inclinado hacia Más mercado':'Centro / neutral',
+  salud:salud<4?'Muy inclinado hacia Salud pública':salud>6?'Muy inclinado hacia Salud privada':'Centro / neutral',
+  agro:agro<4?'Muy inclinado hacia Reforma agraria':agro>6?'Muy inclinado hacia Agroindustria':'Centro / neutral',
+  amb:amb<4?'Muy inclinado hacia Extractivista':amb>6?'Muy inclinado hacia Conservacionista':'Centro / neutral',
+ };
+
+ // Build answered questions list
+ const respuestas=[];
+ SECS.forEach(sec=>{
+  sec.qs.forEach((q,qi)=>{
+   const key=sec.id+'_q'+qi;
+   if(S.qScores[key]!==undefined){
+    const sel=document.querySelector(`input[name="${sec.id}_q${qi}"]:checked`);
+    const oi=sel?parseInt(sel.value):-1;
+    respuestas.push({
+     bloque:sec.titulo,
+     pregunta:q.t.substring(0,80)+'…',
+     respuesta_elegida:oi>=0?q.ops[oi].t:'No respondida',
+    });
+   }
+  });
+ });
+
+ const mismatch=S.voto&&S.voto!=='blanco'&&S.voto!==recKey;
+
+ return {
+  generado_en: new Date().toISOString(),
+  fuente_datos: 'Invamer 21 mayo 2026',
+  perfil_politico:{
+   nombre: pf.n,
+   emoji: pf.e,
+   descripcion: pf.d,
+   impacto_dia_a_dia: pf.imp.map(i=>i.t),
+  },
+  contexto_laboral:{
+   situacion: SECTOR_LABELS[S.workStatus]||'No especificado',
+   sector: SECTOR_LABELS[S.workSector]||'No especificado',
+   estabilidad_percibida: S.workStability==='3'?'Muy estable':S.workStability==='2'?'Estable':S.workStability==='1'?'Inestable':'Muy inestable',
+  },
+  ejes_de_valores:{
+   paz_vs_mano_dura:{ score:paz, de_10:true, interpretacion: axLabels.paz },
+   mas_estado_vs_mercado:{ score:econ, de_10:true, interpretacion: axLabels.econ },
+   salud_publica_vs_privada:{ score:salud, de_10:true, interpretacion: axLabels.salud },
+   reforma_agraria_vs_agroindustria:{ score:agro, de_10:true, interpretacion: axLabels.agro },
+   extractivista_vs_conservacionista:{ score:amb, de_10:true, interpretacion: axLabels.amb },
+  },
+  candidato_mas_alineado:{
+   nombre: CANDS[recKey].n,
+   partido: CANDS[recKey].p,
+   porcentaje_invamer: CANDS[recKey].pct,
+   razon: CANDS[recKey].r,
+   calculado_por: 'Alineación numérica entre scores del usuario y posiciones del candidato en 5 ejes',
+  },
+  voto_declarado: S.voto&&S.voto!=='blanco'?{
+   nombre: CANDS[S.voto]?.n||'Voto en blanco',
+   partido: CANDS[S.voto]?.p||'—',
+   coincide_con_recomendacion: !mismatch,
+   nota: mismatch?'Existe discrepancia entre tu voto declarado y el candidato más alineado con tus respuestas':'Tu voto declarado coincide con el candidato más alineado con tus respuestas',
+  }:{nombre:'No declarado o voto en blanco', coincide_con_recomendacion:null},
+  respuestas_por_bloque: respuestas,
+ };
+}
+
+function generateResultImage() {
+  const resultBlock = document.querySelector('.rw');
+  if (!resultBlock) return;
+
+  html2canvas(resultBlock, { scale: 2, useCORS: true }).then(canvas => {
+    const dataUrl = canvas.toDataURL('image/png');
+    const a = document.createElement('a');
+    a.href = dataUrl;
+    a.download = 'resultado_colombia2026.png';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  });
+}
+
+function downloadJSON(){
+ const data=generateResultJSON();
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement('a');
+ a.href=url; a.download='mi_perfil_politico_colombia2026.json';
+ document.body.appendChild(a); a.click();
+ document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function restart(){
+ S={scores:{paz:5,econ:5,salud:5,agro:5,amb:5},qScores:{},secDone:{},voto:null,workStatus:null,workSector:null,workStability:null};
+ showLanding();
+}
+showLanding();
+</script>
+</body>
+</html>
