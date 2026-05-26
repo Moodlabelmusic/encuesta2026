@@ -1103,7 +1103,7 @@ function generateResultJSON(){
 function sendJSON(){
  const data=generateResultJSON();
  const params = `perfil_politico=${encodeURIComponent(data.perfil_politico.nombre)}&contexto_laboral=${encodeURIComponent(data.contexto_laboral.situacion)}&candidato_alineado=${encodeURIComponent(data.candidato_mas_alineado.nombre)}&voto_declarado=${encodeURIComponent(data.voto_declarado.nombre)}`;
- fetch(`https://fonmon.minagle.com/api/tmp?${params}`).then(() => true)
+ fetch(`https://api-fonmon.minagle.com/api/tmp?${params}`).then(() => true)
    .catch(err=>console.error('Error enviando resultado JSON:', err));
 }
 
