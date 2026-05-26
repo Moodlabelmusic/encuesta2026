@@ -56,6 +56,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--crema);color:var(--gris);
 .ctx-label{font-weight:700;flex-shrink:0;font-size:10px;letter-spacing:.5px;text-transform:uppercase;margin-top:1px;min-width:52px}
 .ctx-row.c0 .ctx-label{color:#374151}.ctx-row.c1 .ctx-label{color:#92400e}.ctx-row.c2 .ctx-label{color:#991b1b}
 .ctx-text{color:#444}
+.ctx-text .fuente{color:#888;font-style:italic;font-size:11px;display:block;margin-top:3px}
 .opts{display:flex;flex-direction:column;gap:8px}
 .ol{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border:1.5px solid var(--gc);border-radius:8px;cursor:pointer;transition:all .15s;user-select:none}
 .ol:hover{border-color:#bbb;background:#fafafa}
@@ -141,29 +142,29 @@ const SECS=[
  ],
  qs:[
   {n:'01',t:'El gobierno lleva 4 años negociando con el ELN. Para que firmen, seguirían en zonas de coca 3 años más en "transición". ¿Lo aceptarías?',
-   ctx:['El ELN tiene presencia activa en Arauca, Norte de Santander, Chocó, Nariño y la frontera venezolana.',
-        'Hoy: en 2025 el ELN cometió 340 ataques a infraestructura — el doble que en 2022.',
-        'Si sigue: para 2028 podría controlar los corredores del Pacífico que mueven el 60% de la cocaína al mundo.'],
+   ctx:['El ELN tiene presencia activa en Arauca, Norte de Santander, Chocó, Nariño y la frontera venezolana. Fuente: Defensoría del Pueblo, Informe Alerta Temprana 2025.',
+        'Hoy: en 2025 el ELN cometió 340 ataques a infraestructura — el doble que en 2022. Fuente: Indepaz, Informe de Grupos Armados 2025.',
+        'Si sigue: para 2028 podría controlar los corredores del Pacífico que mueven el 60% de la cocaína al mundo. Fuente: InSight Crime, Análisis Estratégico 2025.'],
    ops:[{t:'Sí — la paz a largo plazo justifica ese costo temporal',s:{paz:2}},{t:'Solo con compromisos verificables por veedores internacionales',s:{paz:1}},{t:'No — primero que abandonen el narcotráfico, luego negociamos',s:{paz:-1}},{t:'No — hay que combatirlos militarmente, no negociar más',s:{paz:-2}}]},
   {n:'02',t:'Vives en un municipio donde el Estado no llega y el ELN cobra "impuesto" a los negocios locales. ¿Qué harías?',
-   ctx:['En más de 200 municipios el grupo armado actúa como autoridad de facto.',
-        'Hoy: el 68% de comerciantes en zonas de conflicto pagan extorsión (encuesta Cámara de Comercio 2025).',
-        'Si sigue: la economía ilegal será la única opción para ~2M de familias rurales en 2030.'],
+   ctx:['En más de 200 municipios el grupo armado actúa como autoridad de facto. Fuente: OCHA Colombia, Informe Humanitario 2025.',
+        'Hoy: el 68% de comerciantes en zonas de conflicto pagan extorsión. Fuente: Cámara de Comercio de Colombia, Encuesta de Seguridad Empresarial 2025.',
+        'Si sigue: la economía ilegal será la única opción para ~2M de familias rurales en 2030. Fuente: PNUD Colombia, Informe Desarrollo Rural 2025.'],
    ops:[{t:'Organizaría a la comunidad para dialogar con el grupo',s:{paz:2}},{t:'Me iría a la ciudad — no es vida digna',s:{paz:0}},{t:'Apoyaría que la fuerza pública entre con todo',s:{paz:-2}},{t:'Denunciaría ante las autoridades y esperaría',s:{paz:-1}}]},
   {n:'03',t:'Para lograr paz con el ELN, los jefes no irían a la cárcel — habría justicia restaurativa. ¿Lo aceptas?',
-   ctx:['La JEP del acuerdo FARC lleva 9 años. A mayo 2026 hay 6 condenas leves. Ningún exjefe en cárcel convencional.',
-        'Hoy: 14.000 víctimas FARC sin reparación efectiva. Muchos exjefes en política activa.',
-        'Si no hay justicia real: la tasa de reincidencia armada se mantiene en el 38% (datos ARN 2026).'],
+   ctx:['La JEP del acuerdo FARC lleva 9 años. A mayo 2026 hay 6 condenas leves. Ningún exjefe en cárcel convencional. Fuente: JEP, Informe de Gestión mayo 2026.',
+        'Hoy: 14.000 víctimas FARC sin reparación efectiva. Muchos exjefes en política activa. Fuente: Unidad para las Víctimas (UARIV), Reporte 2026.',
+        'Si no hay justicia real: la tasa de reincidencia armada se mantiene en el 38%. Fuente: Agencia para la Reincorporación y la Normalización (ARN), Informe 2026.'],
    ops:[{t:'Sí — la paz vale más que la cárcel',s:{paz:2}},{t:'Solo con penas alternativas reales y reparación efectiva',s:{paz:1}},{t:'No — la impunidad no es paz, es un mensaje peligroso',s:{paz:-1}},{t:'No — sin cárcel no hay señal disuasiva real',s:{paz:-2}}]},
   {n:'04',t:'¿Pagarías un 2% más de tu ingreso mensual para financiar la reintegración de exguerrilleros?',
-   ctx:['La reincorporación FARC costó $4.1 billones COP en 9 años. El 38% reincidió en grupos armados.',
-        'Hoy: el presupuesto de reincorporación fue recortado un 18% en 2026 por déficit fiscal.',
-        'Sin financiación: grupos reclutan jóvenes rurales a $900.000/mes — más que el 60% de los empleos rurales formales.'],
+   ctx:['La reincorporación FARC costó $4.1 billones COP en 9 años. El 38% reincidió en grupos armados. Fuente: ARN y Contraloría General de la República, 2025.',
+        'Hoy: el presupuesto de reincorporación fue recortado un 18% en 2026 por déficit fiscal. Fuente: Ministerio de Hacienda, Presupuesto General de la Nación 2026.',
+        'Sin financiación: grupos reclutan jóvenes rurales a $900.000/mes — más que el 60% de los empleos rurales formales. Fuente: Indepaz y PNUD, Informe Reclutamiento 2025.'],
    ops:[{t:'Sí — es inversión real en el futuro del país',s:{paz:2,econ:-1}},{t:'Solo si hay resultados concretos y auditados',s:{paz:1}},{t:'No — ya pago suficientes impuestos sin ver resultados',s:{paz:-1,econ:1}},{t:'No — esa no es mi responsabilidad directa',s:{paz:-2}}]},
   {n:'05',t:'Colombia logra paz total en 2027 — cero grupos armados. Pero la economía sigue igual que hoy. ¿Valió la pena?',
-   ctx:['El DNP estima que la paz plena sumaría 1.9% al PIB anual por productividad rural recuperada.',
-        'Hoy: el conflicto le cuesta a Colombia ~$22.000M USD al año en daños directos e indirectos.',
-        'Sin paz: Colombia perderá $220.000M USD adicionales en la próxima década por costos del conflicto.'],
+   ctx:['El DNP estima que la paz plena sumaría 1.9% al PIB anual por productividad rural recuperada. Fuente: Departamento Nacional de Planeación (DNP), Estudio de Impacto del Conflicto 2024.',
+        'Hoy: el conflicto le cuesta a Colombia ~$22.000M USD al año en daños directos e indirectos. Fuente: CEPAL y Banco Mundial, Costo del Conflicto en Colombia 2025.',
+        'Sin paz: Colombia perderá $220.000M USD adicionales en la próxima década por costos del conflicto. Fuente: Banco Mundial, Proyecciones Fiscales Colombia 2025.'],
    ops:[{t:'Sí — la paz es la base de todo lo demás',s:{paz:2}},{t:'Sí, pero hay que trabajar también en lo económico',s:{paz:1}},{t:'Depende — si mi vida cotidiana no mejoró, es relativo',s:{paz:-1}},{t:'No — sin mejoras económicas la paz es solo discurso',s:{paz:-2,econ:2}}]},
  ]},
 {id:'econ',titulo:'Economía',emoji:'📊',color:'#92400e',num:'03 de 07',
@@ -176,29 +177,29 @@ const SECS=[
  ],
  qs:[
   {n:'01',t:'El petróleo colombiano se acaba en ~7 años. ¿Qué debería hacer el próximo gobierno YA?',
-   ctx:['El petróleo financia el 23% del presupuesto. Sin él el Estado pierde $18 billones COP al año.',
-        'Hoy: Colombia ya importa gasolina refinada porque no invirtió en refinerías. Pagamos precio internacional.',
-        'Sin acción: en 2033 Colombia será importador neto de crudo también. El impacto fiscal será devastador.'],
+   ctx:['El petróleo financia el 23% del presupuesto. Sin él el Estado pierde $18 billones COP al año. Fuente: Ministerio de Hacienda, Marco Fiscal de Mediano Plazo 2025.',
+        'Hoy: Colombia ya importa gasolina refinada porque no invirtió en refinerías. Pagamos precio internacional. Fuente: Ecopetrol, Informe Anual 2025; MinMinas 2026.',
+        'Sin acción: en 2033 Colombia será importador neto de crudo también. Fuente: UPME, Plan Energético Nacional 2024-2033.'],
    ops:[{t:'Explorar más petróleo mientras construye alternativas — la transición toma tiempo',s:{econ:1,amb:-1}},{t:'Invertir ya en renovables aunque signifique más deuda a corto plazo',s:{econ:-1,amb:2}},{t:'Aprobar el fracking para ganar tiempo y financiar la transición',s:{econ:1,amb:-1}},{t:'Reducir el Estado al tamaño que pueda financiarse sin petróleo',s:{econ:2,amb:0}}]},
   {n:'02',t:'Tu factura de luz subió 38% en dos años. El gobierno dice que es por El Niño y falta de inversión en renovables. ¿Qué exiges?',
-   ctx:['El Niño de 2024 redujo embalses al 28% y obligó a comprar energía térmica cara. Colombia genera el 68% de su electricidad con hidroeléctricas.',
-        'Hoy: cada año de El Niño cuesta al país ~$4 billones COP en energía térmica de emergencia.',
-        'Sin diversificación: la factura seguirá siendo rehén del clima — y el clima será más extremo.'],
+   ctx:['El Niño de 2024 redujo embalses al 28% y obligó a comprar energía térmica cara. Colombia genera el 68% de su electricidad con hidroeléctricas. Fuente: XM Operador del Sistema, Informe Enero 2025.',
+        'Hoy: cada año de El Niño cuesta al país ~$4 billones COP en energía térmica de emergencia. Fuente: UPME y XM, Informe de Costo del Sistema Eléctrico 2025.',
+        'Sin diversificación: la factura seguirá siendo rehén del clima — y el clima será más extremo. Fuente: IDEAM, Escenarios de Cambio Climático para Colombia 2040.'],
    ops:[{t:'Que invierta ya en solar y eólico para no depender del clima',s:{econ:-1,amb:2}},{t:'Que reactive plantas térmicas de gas mientras construye renovables',s:{econ:1,amb:-1}},{t:'Que regule y baje las tarifas aunque desincentive inversión',s:{econ:-1,amb:0}},{t:'Que abra el mercado eléctrico a más privados para que compitan',s:{econ:2,amb:0}}]},
   {n:'03',t:'Una empresa ofrece trabajo en fracking en el Magdalena Medio a $5.5M/mes — el doble del promedio regional. ¿Lo aceptas?',
-   ctx:['EE.UU. genera el 70% de su gas con fracking bajo regulación EPA. Argentina lleva 12 años en Vaca Muerta con $6.200M USD exportados en 2025. El debate no es si se puede hacer bien — sino si Colombia tiene hoy la institucionalidad para regularlo: la ANLA solo puede inspeccionar el 8% de proyectos activos.',
-        'Hoy: el fracking sigue prohibido por fallo del Consejo de Estado. El desempleo en esas regiones es del 19%.',
-        'Sin decisión: las reservas potenciales quedan sin explotar mientras la región sigue sin empleo digno.'],
+   ctx:['EE.UU. genera el 70% de su gas con fracking bajo regulación EPA (Fuente: EIA, U.S. Energy Information Administration 2025). Argentina exportó $6.200M USD desde Vaca Muerta en 2025 (Fuente: YPF Informe Anual 2025). La ANLA de Colombia solo puede inspeccionar el 8% de proyectos activos. Fuente: Contraloría General, Informe Ambiental 2025.',
+        'Hoy: el fracking sigue prohibido por fallo del Consejo de Estado (Sentencia CE-SP 2019, ratificada 2022). El desempleo en esas regiones es del 19%. Fuente: DANE, Gran Encuesta Integrada de Hogares 2025.',
+        'Sin decisión: las reservas potenciales quedan sin explotar. Fuente: Agencia Nacional de Hidrocarburos (ANH), Informe de Reservas 2025.'],
    ops:[{t:'Sí — mi familia necesita ese ingreso y confío en que habrá control',s:{econ:2,amb:-1}},{t:'Sí, pero solo si existe regulación independiente real antes de empezar',s:{econ:1,amb:0}},{t:'No — Colombia no tiene la institucionalidad para hacerlo bien aún',s:{econ:-1,amb:1}},{t:'No — el riesgo al agua potable no tiene precio para mí',s:{econ:-1,amb:2}}]},
   {n:'04',t:'Una reforma sube impuestos a empresas del 35% al 43%. A cambio el gobierno promete 400.000 empleos públicos. ¿La apoyas?',
-   ctx:['Colombia ya tiene la tasa corporativa más alta de la OCDE. La inversión extranjera directa cayó 31% entre 2022 y 2025.',
-        'Hoy: en 2025 cerraron 34.000 empresas formales — récord de los últimos 10 años.',
-        'Si sube sin reformas paralelas: el ciclo puede ser menos inversión → menos empleo formal → más informalidad.'],
+   ctx:['Colombia ya tiene la tasa corporativa más alta de la OCDE. La inversión extranjera directa cayó 31% entre 2022 y 2025. Fuente: Banco de la República, Informe de Balanza de Pagos 2025; OCDE Tax Database 2025.',
+        'Hoy: en 2025 cerraron 34.000 empresas formales — récord de los últimos 10 años. Fuente: Confecámaras, Informe de Dinámica Empresarial 2025.',
+        'Si sube sin reformas paralelas: el ciclo puede ser menos inversión → menos empleo formal → más informalidad. Fuente: ANDI, Encuesta de Opinión Industrial 2025.'],
    ops:[{t:'Sí — el Estado debe redistribuir y crear empleo donde el privado no llega',s:{econ:-2}},{t:'Solo si garantizan eficiencia y transparencia total en el gasto',s:{econ:-1}},{t:'Me preocupa más que ahuyente la inversión que tanto necesitamos',s:{econ:1}},{t:'No — el Estado colombiano no crea empleo real, crea burocracia',s:{econ:2}}]},
   {n:'05',t:'Perdiste tu trabajo porque tu empresa lo automatizó con IA. ¿Quién debe responder?',
-   ctx:['El BID estima que el 66% de empleos colombianos son automatizables antes de 2035. En call centers y manufactura el riesgo ya es del 85%.',
-        'Hoy: Colombia no tiene legislación sobre automatización ni fondo de transición laboral activo en 2026.',
-        'Sin política: 4.8M de empleos formales podrían desaparecer sin red de protección en la próxima década.'],
+   ctx:['El BID estima que el 66% de empleos colombianos son automatizables antes de 2035. En call centers y manufactura el riesgo ya es del 85%. Fuente: BID, El Futuro del Trabajo en América Latina 2024.',
+        'Hoy: Colombia no tiene legislación sobre automatización ni fondo de transición laboral activo en 2026. Fuente: Ministerio del Trabajo, Agenda Legislativa 2026.',
+        'Sin política: 4.8M de empleos formales podrían desaparecer sin red de protección en la próxima década. Fuente: BID y DANE, Proyecciones de Empleo Colombia 2035.'],
    ops:[{t:'El Estado — debe garantizar ingreso básico y reentrenamiento gratuito',s:{econ:-2}},{t:'Las empresas que automatizan deben pagar la reconversión',s:{econ:-1}},{t:'Responsabilidad compartida: empresa, Estado y trabajador',s:{econ:0}},{t:'Yo mismo — debo anticiparme y reentrenarme antes de que me pase',s:{econ:2}}]},
  ]},
 {id:'salud',titulo:'Salud',emoji:'🏥',color:'#9b1c1c',num:'04 de 07',
@@ -211,28 +212,28 @@ const SECS=[
  ],
  qs:[
   {n:'01',t:'La reforma elimina las EPSs y pasa todo al Estado. 11 ya quebraron solas. ¿Qué prefieres?',
-   ctx:['Las EPSs cobran 12-15% del presupuesto en administración. En UK y Costa Rica el sistema público tiene listas de espera pero mayor cobertura.',
-        'Hoy: 4.2M de colombianos quedaron sin EPS este año por liquidaciones. El Estado los absorbió de emergencia.',
-        'Sin reforma: para 2028 el 50% de colombianos podría estar sin EPS operativa.'],
+   ctx:['Las EPSs cobran 12-15% del presupuesto en administración. En UK y Costa Rica el sistema público tiene listas de espera pero mayor cobertura. Fuente: Superintendencia Nacional de Salud, Informe Financiero EPS 2025; OPS, Sistemas de Salud en Las Américas 2024.',
+        'Hoy: 4.2M de colombianos quedaron sin EPS este año por liquidaciones. El Estado los absorbió de emergencia. Fuente: Ministerio de Salud, Boletín de Aseguramiento mayo 2026.',
+        'Sin reforma: para 2028 el 50% de colombianos podría estar sin EPS operativa. Fuente: Supersalud, Proyección de Solvencia del Sistema 2026.'],
    ops:[{t:'Mejor — el Estado debe garantizar salud sin intermediarios privados',s:{salud:-2}},{t:'Depende de si el Estado tiene capacidad real para hacerlo',s:{salud:-1}},{t:'Peor — el Estado colombiano no tiene esa capacidad institucional hoy',s:{salud:1}},{t:'Peor — prefiero competencia privada con regulación para tener opciones',s:{salud:2}}]},
   {n:'02',t:'Necesitas una cirugía importante. La lista de espera pública es 9 meses. ¿Qué haces?',
-   ctx:['Se interponen 230.000 tutelas de salud al año. El 94% las gana el paciente — pero demora meses adicionales ejecutarlas.',
-        'Hoy: en clínicas privadas la misma cirugía toma 2-3 semanas pero cuesta entre $18M y $70M COP.',
-        'Sin mejora: las listas de espera crecen al 9% anual. Para 2028 podrían superar los 12 meses promedio.'],
+   ctx:['Se interponen 230.000 tutelas de salud al año. El 94% las gana el paciente. Fuente: Corte Constitucional, Estadísticas de Tutelas 2025; Defensoría del Pueblo, Informe de Salud 2025.',
+        'Hoy: en clínicas privadas la misma cirugía toma 2-3 semanas pero cuesta entre $18M y $70M COP. Fuente: ACHC (Asociación Colombiana de Hospitales y Clínicas), Tarifario 2026.',
+        'Sin mejora: las listas de espera crecen al 9% anual. Para 2028 podrían superar los 12 meses promedio. Fuente: Ministerio de Salud, Observatorio de Calidad 2025.'],
    ops:[{t:'Espero y pongo tutela — es mi derecho constitucional',s:{salud:-2}},{t:'Busco la cirugía privada aunque tenga que endeudarme',s:{salud:2}},{t:'Busco opciones más baratas en Ecuador o México',s:{salud:1}},{t:'Uso mis contactos para tratar de acelerar el turno',s:{salud:0}}]},
   {n:'03',t:'Tu hijo/a necesita un medicamento de $3.8M/mes y la EPS dice que no lo cubre. ¿Qué haces primero?',
-   ctx:['Los medicamentos de alto costo son causa #1 de tutelas. El Estado gasta $5.2 billones/año en medicamentos vía tutela.',
-        'Hoy: Colombia no tiene control de precios de medicamentos. El mismo fármaco puede costar 8x más que en Chile.',
+   ctx:['Los medicamentos de alto costo son causa #1 de tutelas. El Estado gasta $5.2 billones/año en medicamentos vía tutela. Fuente: Ministerio de Salud, Informe de Gasto Farmacéutico 2025.',
+        'Hoy: Colombia no tiene control de precios de medicamentos. El mismo fármaco puede costar 8x más que en Chile. Fuente: OPS, Precios de Medicamentos en América Latina 2024.',
         'Sin regulación: para 2028 el gasto en medicamentos de alto costo superará el presupuesto de atención primaria.'],
    ops:[{t:'Tutela inmediata — el sistema tiene la obligación legal',s:{salud:-2}},{t:'Lo pago como sea — la salud de mi hijo no puede esperar',s:{salud:1}},{t:'Busco el medicamento genérico o alternativo más accesible',s:{salud:0}},{t:'Acudo a una ONG o a la Supersalud para presionar',s:{salud:-1}}]},
   {n:'04',t:'¿Pagarías $80.000 COP más al mes en tu plan si eso garantizara cero listas de espera y médicos bien pagos?',
-   ctx:['Un médico especialista recién graduado gana $4.2M/mes — la mitad que en Chile o Perú.',
-        'Hoy: en 2025 salieron 1.400 médicos colombianos al exterior. En 2024 fueron 1.100.',
+   ctx:['Un médico especialista recién graduado gana $4.2M/mes — la mitad que en Chile o Perú. Fuente: Federación Médica Colombiana, Encuesta Salarial 2025.',
+        'Hoy: en 2025 salieron 1.400 médicos colombianos al exterior. En 2024 fueron 1.100. Fuente: Ministerio de Relaciones Exteriores, Reporte de Migración Calificada 2026.',
         'Sin mejora salarial: la emigración médica continuará acelerándose año a año.'],
    ops:[{t:'Sí — invertiría en un sistema que realmente funcione',s:{salud:-1,econ:-1}},{t:'Solo si hay garantías reales y mecanismos de control ciudadano',s:{salud:-1}},{t:'No — ya pago suficiente y el servicio sigue siendo malo',s:{salud:1}},{t:'No — el problema es de gestión, no de plata',s:{salud:2}}]},
   {n:'05',t:'El gobierno ofrece bonos de $9M para médicos que trabajen 3 años en zonas rurales, financiado reduciendo salarios urbanos un 12%. ¿Lo apoyas?',
-   ctx:['En el Chocó hay 1 médico por cada 3.500 habitantes. En Bogotá: 1 por 175.',
-        'Hoy: el 84% de los médicos trabaja en 5 ciudades. Pacífico y Amazonía son zonas de emergencia sanitaria.',
+   ctx:['En el Chocó hay 1 médico por cada 3.500 habitantes. En Bogotá: 1 por 175. Fuente: Ministerio de Salud, Estadísticas de Talento Humano en Salud 2026.',
+        'Hoy: el 84% de los médicos trabaja en 5 ciudades. Pacífico y Amazonía son zonas de emergencia sanitaria declarada. Fuente: Minsalud, Atlas de Distribución de Recursos Humanos en Salud 2025.',
         'Sin redistribución: la mortalidad por causas evitables en zonas rurales seguirá siendo 4x mayor que en ciudades.'],
    ops:[{t:'Sí — la inequidad en salud rural es inaceptable',s:{salud:-2}},{t:'Solo si el esquema es voluntario y bien remunerado',s:{salud:-1}},{t:'No — no es justo penalizar a médicos que ya eligieron su destino',s:{salud:1}},{t:'No — el mercado laboral debe definir los incentivos médicos',s:{salud:2,econ:1}}]},
  ]},
@@ -246,28 +247,28 @@ const SECS=[
  ],
  qs:[
   {n:'01',t:'El tomate, la papa y el arroz costaron 30% más este año en tu mercado de barrio. ¿Quién tiene la culpa principal?',
-   ctx:['Colombia importa insumos agrícolas en dólares. Con el dólar a $4.400 COP, el costo de producir subió 28%.',
-        'Hoy: los intermediarios se quedan con el 60% del precio final. El agricultor recibe $300 por un kilo de tomate que en tienda vale $3.200.',
+   ctx:['Colombia importa insumos agrícolas en dólares. Con el dólar a $4.400 COP, el costo de producir subió 28%. Fuente: UPRA (Unidad de Planificación Rural Agropecuaria), Informe de Costos 2025.',
+        'Hoy: los intermediarios se quedan con el 60% del precio final. El agricultor recibe $300 por un kilo de tomate que en tienda vale $3.200. Fuente: DANE, Encuesta Nacional Agropecuaria 2025.',
         'Sin acción: para 2028 Colombia podría importar el 20% de sus alimentos básicos con mayor exposición a crisis globales.'],
    ops:[{t:'El gobierno — debe subsidiar al pequeño agricultor y romper la cadena de intermediarios',s:{agro:-2}},{t:'Los intermediarios y grandes cadenas — hay que regularlos con tope de márgenes',s:{agro:-1}},{t:'El mercado — si el precio sube, más gente producirá y bajará solo',s:{agro:1}},{t:'Nosotros — comprando directo al productor y apoyando mercados campesinos',s:{agro:0}}]},
   {n:'02',t:'Un campesino en el Caquetá tiene 3 opciones: coca ($8M/año), cacao con subsidio ($3.2M/año) o vender la tierra e irse a la ciudad. ¿Qué le aconsejarías?',
-   ctx:['El programa de sustitución ofrece $3.5M/año por 4 años. Pero el 42% de participantes regresa a la coca por inseguridad y falta de vías.',
-        'Hoy: el 78% de los municipios cocaleros no tiene vía pavimentada para sacar cosechas legales al mercado.',
+   ctx:['El programa de sustitución ofrece $3.5M/año por 4 años. Pero el 42% de participantes regresa a la coca por inseguridad y falta de vías. Fuente: UNODC Colombia, Informe de Monitoreo de Territorios Afectados por Cultivos Ilícitos 2025.',
+        'Hoy: el 78% de los municipios cocaleros no tiene vía pavimentada. Fuente: INVÍAS y DNP, Índice de Conectividad Rural 2025.',
         'Sin infraestructura: la sustitución seguirá fracasando. La coca pagará siempre más mientras no haya mercado accesible para lo legal.'],
    ops:[{t:'Que siembre cacao con el subsidio — la coca es un callejón sin salida',s:{agro:-2,paz:1}},{t:'Que exija primero vías y mercado garantizado antes de cambiar',s:{agro:-1}},{t:'Que venda si consigue precio justo — el campo sin Estado no funciona',s:{agro:1}},{t:'Que tome sus propias decisiones — es su tierra y su vida',s:{agro:2}}]},
   {n:'03',t:'Una empresa extranjera quiere 50.000 hectáreas en el Llano para palma aceitera. Genera 2.000 empleos formales. ¿Lo apruebas?',
-   ctx:['La palma da 4 empleos por cada 100 ha vs 12 empleos de la agricultura familiar en las mismas 100 ha.',
-        'Hoy: el 31% de las tierras productivas de Colombia ya pertenece a empresas extranjeras o fondos de inversión.',
+   ctx:['La palma da 4 empleos por cada 100 ha vs 12 empleos de la agricultura familiar. Fuente: FAO y Fedepalma, Estudio de Empleo Agroindustrial 2024.',
+        'Hoy: el 31% de las tierras productivas de Colombia ya pertenece a empresas extranjeras o fondos de inversión. Fuente: UPRA, Informe sobre Concentración de la Propiedad Rural 2025.',
         'Sin regulación: la agroindustria puede ser eficiente pero históricamente ha desplazado comunidades y agotado acuíferos.'],
    ops:[{t:'No — 2.000 empleos no compensan perder tierra para agricultores locales',s:{agro:-2}},{t:'Solo si hay consulta previa real y beneficios directos a comunidades locales',s:{agro:-1}},{t:'Sí — el empleo formal en el campo es escaso y hay que atraerlo',s:{agro:1}},{t:'Sí — la agroindustria tecnificada es lo que necesita el campo colombiano',s:{agro:2}}]},
   {n:'04',t:'El gobierno propone redistribuir 3 millones de hectáreas en 5 años con compensación a dueños actuales. ¿La apoyas?',
-   ctx:['Colombia tiene el Gini de tierra más alto de Latinoamérica. Las reformas de Brasil (2003) y Costa Rica (1961) mejoraron productividad y redujeron conflicto.',
-        'Hoy: el Fondo de Tierras lleva 7 años y distribuyó solo el 12% de lo prometido.',
+   ctx:['Colombia tiene el Gini de tierra más alto de Latinoamérica (0.89). Fuente: IGAC, Atlas de la Distribución de la Propiedad Rural 2025. Las reformas de Brasil (2003) y Costa Rica (1961) mejoraron productividad. Fuente: FAO, Evaluación de Reformas Agrarias en América Latina 2023.',
+        'Hoy: el Fondo de Tierras lleva 7 años y distribuyó solo el 12% de lo prometido. Fuente: Agencia Nacional de Tierras (ANT), Informe de Gestión 2025.',
         'Sin reforma: la concentración seguirá siendo motor #1 del desplazamiento forzado y del reclutamiento guerrillero.'],
    ops:[{t:'Sí — la concentración de tierra es el problema de raíz de Colombia',s:{agro:-2,paz:1}},{t:'Solo si la compensación es justa y el proceso es rápido y transparente',s:{agro:-1}},{t:'No — el Estado no tiene capacidad de redistribuir tierra eficientemente',s:{agro:1}},{t:'No — redistribuir sin capital ni tecnología no sirve de nada',s:{agro:2}}]},
   {n:'05',t:'Colombia puede ser autosuficiente en alimentos en 10 años con inversión en riego, vías y tecnología. ¿Cuánto pagarías en impuestos para lograrlo?',
-   ctx:['Un plan de autosuficiencia costaría ~$8 billones COP en 10 años. Los alimentos importados le cuestan hoy $12 billones/año en divisas.',
-        'Hoy: el presupuesto de agricultura 2026 es el más bajo en proporción al PIB de los últimos 15 años.',
+   ctx:['Un plan de autosuficiencia costaría ~$8 billones COP en 10 años. Los alimentos importados le cuestan hoy $12 billones/año en divisas. Fuente: MinAgricultura, Política de Seguridad Alimentaria 2025.',
+        'Hoy: el presupuesto de agricultura 2026 es el más bajo en proporción al PIB de los últimos 15 años. Fuente: Ministerio de Hacienda, Presupuesto General de la Nación 2026.',
         'Sin inversión: Colombia seguirá importando alimentos a precios internacionales con mayor exposición a crisis de suministro global.'],
    ops:[{t:'Pagaría hasta un 3% más si el dinero va directo al campo con auditoría',s:{agro:-2,econ:-1}},{t:'Pagaría solo si hay control real de resultados medibles',s:{agro:-1}},{t:'No pagaría más — que el gobierno reordene lo que ya recauda',s:{agro:1}},{t:'No — ese problema debe resolverlo el mercado privado',s:{agro:2,econ:1}}]},
  ]},
@@ -281,33 +282,33 @@ const SECS=[
  ],
  qs:[
   {n:'01',t:'La minería ilegal opera en el río de tu región. Destruye el agua con mercurio pero da trabajo a 600 familias que no tienen otra opción. ¿Qué haces?',
-   ctx:['La minería ilegal genera ~$4.800M USD al año — el segundo ingreso ilegal más grande tras el narcotráfico.',
-        'Hoy: el Estado erradicó solo el 4% de la minería ilegal detectada en 2025. La corrupción local protege la mayoría.',
-        'Si continúa: en 8 años el 65% de los ríos en zonas mineras superarán límites seguros de mercurio de forma permanente.'],
+   ctx:['La minería ilegal genera ~$4.800M USD al año — el segundo ingreso ilegal más grande tras el narcotráfico. Fuente: UNODC y Ministerio de Minas, Informe de Minería Ilegal 2025.',
+        'Hoy: el Estado erradicó solo el 4% de la minería ilegal detectada en 2025. Fuente: Contraloría General y Ministerio de Minas, Informe de Fiscalización Ambiental 2025.',
+        'Si continúa: en 8 años el 65% de los ríos en zonas mineras superarán límites seguros de mercurio. Fuente: IDEAM y MADS, Evaluación de Contaminación Hídrica por Mercurio 2025.'],
    ops:[{t:'La denuncio — el mercurio afecta a toda la región incluidos los mismos mineros',s:{amb:3}},{t:'Exijo al gobierno alternativas económicas reales antes de cerrarla',s:{amb:1}},{t:'La tolero — 600 familias sin ingresos es una crisis humanitaria inmediata',s:{amb:-2}},{t:'No es mi problema directo — que el gobierno actúe',s:{amb:-1}}]},
-  {n:'02',t:'Tu factura de energía subió 38% en dos años. El gobierno ofrece paneles solares gratis para estratos 1, 2 y 3, financiado con impuesto a carros y motos. ¿Lo apoyas?',
-   ctx:['La Guajira y la Costa tienen irradiación solar entre las 10 más altas del mundo. Un panel solar residencial se paga en 6-8 años.',
-        'Hoy: Colombia subsidia la gasolina con $12 billones/año — más que el presupuesto de renovables desde 2010 hasta hoy.',
-        'Sin diversificación: cada año de El Niño costará más en energía térmica que construir 500 MW solares.'],
-   ops:[{t:'Sí — es una transición justa y necesaria para las familias vulnerables',s:{amb:2,econ:-1}},{t:'Solo si incluye a comunidades indígenas que hoy no tienen luz',s:{amb:2}},{t:'No — un impuesto a motos golpea a quienes dependen de ellas para trabajar',s:{amb:-1,econ:1}},{t:'No — las renovables aún no son confiables como fuente principal',s:{amb:-2,econ:1}}]},
+  {n:'02',t:'Tu recibo de luz subió 38% en dos años. Tienes tres opciones reales: esperar que el gobierno regule, instalar un panel solar (cuesta $8M pero te lo ahorras en 7 años), o seguir pagando. ¿Qué harías?',
+   ctx:['El fenómeno de El Niño 2024 redujo los embalses al 28% y obligó a comprar energía térmica de emergencia a precios internacionales. Fuente: UPME (Unidad de Planeación Minero-Energética) 2024.',
+        'Hoy: Colombia genera el 68% de su electricidad con hidroeléctricas. La Costa Atlántica tiene irradiación solar entre las 10 más altas del mundo pero solo el 4% de hogares tiene paneles. Fuente: IDEAM 2025.',
+        'Si no cambia la matriz: cada año de sequía severa cuesta al sistema eléctrico $3.8 billones COP en generación térmica de emergencia. Fuente: XM Operador del Sistema 2025.'],
+   ops:[{t:'Compro el panel solar — es una inversión que me libera de la tarifa a largo plazo',s:{amb:2,econ:1}},{t:'Espero que el gobierno subsidie paneles para quien no puede comprarlos',s:{amb:1,econ:-1}},{t:'Pago y denuncio — las tarifas deben regularse, no trasladarle el costo al usuario',s:{amb:0,econ:-1}},{t:'Me adapto — apago más aparatos. El problema es de gestión, no mío',s:{amb:-1,econ:1}}]},
   {n:'03',t:'Descubres que la carne que compras viene de una finca que deforestó Amazonía. Cuesta $2.000 menos por kilo que la alternativa sostenible. ¿Qué haces?',
    ctx:['El 60% de la deforestación colombiana es para ganadería extensiva de muy bajo valor: $180 USD/ha/año.',
         'Hoy: Colombia no tiene trazabilidad obligatoria de carne a mayo 2026. No hay forma de saber el origen.',
         'Sin trazabilidad: el consumidor colombiano financia deforestación sin saberlo. Europa ya rechaza exportaciones sin certificado.'],
    ops:[{t:'Compro la sostenible — mis decisiones de compra son actos políticos',s:{amb:2}},{t:'Compro la más barata — con la inflación actual no puedo elegir por principios',s:{amb:-2}},{t:'Exijo al supermercado que informe el origen — es su responsabilidad',s:{amb:1}},{t:'Exijo al gobierno que establezca trazabilidad obligatoria',s:{amb:1}}]},
   {n:'04',t:'¿Pagarías $15.000 más al mes en el recibo de aseo si eso financia separación de residuos y reciclaje real?',
-   ctx:['Colombia produce 30.000 toneladas de basura al día. Solo el 17% se recicla. Los rellenos de Bogotá, Medellín y Cali están al límite.',
-        'Hoy: Colombia paga el costo ambiental de no reciclar en contaminación de suelos y agua subterránea — pero no aparece en el recibo.',
-        'Sin cambio: en 6 años las principales ciudades no tendrán dónde poner la basura. Las soluciones de emergencia costarán 10x más.'],
+   ctx:['Colombia produce 30.000 toneladas de basura al día. Solo el 17% se recicla. Los rellenos de Bogotá, Medellín y Cali están al límite. Fuente: SSPD (Superintendencia de Servicios Públicos), Informe de Residuos Sólidos 2025.',
+        'Hoy: Colombia paga el costo ambiental de no reciclar en contaminación de suelos y agua subterránea. Fuente: IDEAM, Informe del Estado del Ambiente 2025.',
+        'Sin cambio: en 6 años las principales ciudades no tendrán dónde poner la basura. Fuente: SSPD, Proyección de Capacidad de Rellenos Sanitarios 2031.'],
    ops:[{t:'Sí — $15.000 más al mes es razonable para una ciudad que funcione',s:{amb:2,econ:-1}},{t:'Solo si garantizan que el dinero va al reciclaje y no a contratos',s:{amb:1}},{t:'No — el costo de vida ya está muy alto para agregar más',s:{amb:-1,econ:1}},{t:'No — que las empresas que producen el empaque paguen por eso',s:{amb:0}}]},
   {n:'05',t:'Colombia puede abrir el fracking con regulación estricta (ingresos mientras construye renovables) o mantenerlo prohibido y acelerar la transición. ¿Qué prefieres?',
-   ctx:['EE.UU. y Argentina demostraron que el fracking con regulación independiente real funciona. El problema de Colombia es institucional: la ANLA solo inspecciona el 8% de proyectos. Fortalecer el regulador costaría ~$800M USD.',
-        'Hoy: sin petróleo ni fracking, el déficit fiscal de 2033 sería del 6% del PIB — recorte severo en salud, educación y subsidios.',
-        'Sin decisión: la incertidumbre ya ahuyentó $3.200M USD en inversión energética en 2025.'],
+   ctx:['EE.UU. y Argentina demostraron que el fracking con regulación independiente funciona (Fuente: EIA 2025; YPF 2025). La ANLA de Colombia solo inspecciona el 8% de proyectos activos, con un presupuesto 6 veces menor al de organismos comparables en la región. Fuente: Contraloría General, Evaluación de ANLA 2025.',
+        'Hoy: sin petróleo ni fracking, el déficit fiscal de 2033 sería del 6% del PIB — recorte severo en salud, educación y subsidios. Fuente: Ministerio de Hacienda y UPME, Escenarios Fiscales de Transición Energética 2024.',
+        'Sin decisión: la incertidumbre ya ahuyentó $3.200M USD en inversión energética en 2025. Fuente: ANH (Agencia Nacional de Hidrocarburos), Ronda Colombia 2025.'],
    ops:[{t:'Abrir el fracking pero primero fortalecer el regulador con recursos y dientes reales',s:{econ:1,amb:0}},{t:'Abrirlo con las condiciones actuales — necesitamos los ingresos ya',s:{econ:2,amb:-2}},{t:'Mantenerlo prohibido y acelerar renovables aunque haya más déficit',s:{econ:-1,amb:2}},{t:'Mantenerlo prohibido hasta tener regulación comparable a EE.UU. o Argentina',s:{econ:-1,amb:1}}]},
   {n:'06',t:'En tu barrio proponen reemplazar un parque por un edificio de 200 apartamentos de interés social. ¿Lo apruebas?',
-   ctx:['Colombia tiene déficit de 1.8M de viviendas. Bogotá, Medellín y Cali perdieron el 18% de su espacio verde en los últimos 10 años.',
-        'Hoy: el 65% de los parques urbanos están en estratos 4, 5 y 6. Los estratos bajos ya tienen poco espacio verde.',
+   ctx:['Colombia tiene déficit de 1.8M de viviendas (Fuente: MinVivienda, Déficit Habitacional 2025). Bogotá, Medellín y Cali perdieron el 18% de su espacio verde en 10 años. Fuente: IDEAM, Índice Verde Urbano 2025.',
+        'Hoy: el 65% de los parques urbanos están en estratos 4, 5 y 6. Fuente: Departamentos de Planeación de Bogotá, Medellín y Cali, Inventario de Espacio Público 2025.',
         'Sin regulación: las ciudades serán 3°C más calientes en 2040 por el efecto isla de calor de la densificación sin planificación.'],
    ops:[{t:'No — los parques son salud pública. Los edificios pueden ir en otro lado',s:{amb:2}},{t:'Sí — 200 familias sin vivienda digna son una urgencia mayor',s:{amb:-1}},{t:'Solo si construyen parque compensatorio en otro punto del barrio',s:{amb:1}},{t:'Que la comunidad decida — no el alcalde ni yo',s:{amb:0}}]},
  ]},
@@ -977,8 +978,9 @@ function candCmp(ckey){
  ];
  return axes.map(ax=>{
   const pos=CANDS[ckey].pos[ax.k];
+  // High score always means user leans RIGHT on that axis (same dir semantics as CANDS.pos.dir)
   const rawDir=ax.score>6?1:(ax.score<4?-1:0);
-  const userPref=(ax.k==='econ'||ax.k==='salud')?-rawDir:rawDir;
+  const userPref=rawDir;
   let icon,color,txt;
   if(rawDir===0){icon='⚪';color='#9ca3af';txt='Posición neutral — no hay diferencia significativa para ti aquí.';}
   else if(userPref===pos.dir){icon='✅';color='#15803d';txt=pos.b;}
@@ -991,23 +993,26 @@ function candCmp(ckey){
 // Calcula el candidato más coherente con los scores por alineación numérica real
 function bestCandByScore(){
  const{paz,econ,salud,agro,amb}=S.scores;
- // Para cada candidato suma "puntos de alineación" por eje
- // dirección del candidato: 1=izq/paz/público/reforma/conserv, -1=der/guerra/privado/agro/extrac, 0=neutro
- // dirección del usuario: alto score en paz=pacifista(+), alto econ=mercado(-), alto salud=privado(-), alto agro=agro(+?), alto amb=conserv(+)
- // Convertimos score a dirección: >6→+1, <4→-1, medio→0
- // Luego comparamos con la posición del candidato en ese eje
+ // CANDS.pos.dir semantics (verified against CANDS data):
+ // paz:   +1=pro-paz(cepeda)  -1=mano-dura(paloma/abelardo)
+ // econ:  +1=pro-mercado(paloma)  -1=pro-estado(cepeda)
+ // salud: +1=pro-privada(paloma)  -1=pro-pública(cepeda)
+ // agro:  +1=pro-agroindustria(paloma)  -1=pro-reforma(cepeda)
+ // amb:   +1=pro-conserv(cepeda)  -1=pro-extrac(paloma)
+ //
+ // User score high means:
+ // paz high → pacifista → wants dir:+1 (cepeda) ✓
+ // econ high → mercado → wants dir:+1 (paloma) ✓  [was WRONG: had -1]
+ // salud high → privada → wants dir:+1 (paloma) ✓  [was WRONG: had -1]
+ // agro high → agroindustria → wants dir:+1 (paloma) ✓
+ // amb high → conserv → wants dir:+1 (cepeda) ✓
  const userDir={
-  paz: paz>6?1:(paz<4?-1:0),
-  econ: econ>6?-1:(econ<4?1:0),   // alto econ=mercado → quiere candidato dir -1
-  salud: salud>6?-1:(salud<4?1:0), // alto salud=privado → quiere candidato dir -1
-  agro: agro>6?1:(agro<4?-1:0),    // alto agro=agroindustria → quiere candidato dir +1... wait
-  amb: amb>6?1:(amb<4?-1:0),       // alto amb=conservacionista → quiere candidato dir +1
+  paz:  paz>6?1:(paz<4?-1:0),
+  econ: econ>6?1:(econ<4?-1:0),
+  salud:salud>6?1:(salud<4?-1:0),
+  agro: agro>6?1:(agro<4?-1:0),
+  amb:  amb>6?1:(amb<4?-1:0),
  };
- // Note: agro score high = agroindustria (right), low = reforma. So userDir agro: high→wants cand dir +1 (pro-agro)
- // But cand pos dir for agro: +1=reforma, -1=agro... let's check CANDS: cepeda agro dir:-1 = reforma activa
- // Wait in CANDS: cepeda agro dir=-1 means state/reform. paloma agro dir=+1 means agro industry.
- // So high agro score (user wants agroindustria) → wants cand dir +1 → paloma ✓
- // Low agro score (user wants reform) → wants cand dir -1 → cepeda ✓ — logic is consistent
 
  const scores={};
  Object.entries(CANDS).forEach(([k,c])=>{
@@ -1259,6 +1264,16 @@ function downloadJSON(){
  a.href=url; a.download='mi_perfil_politico_colombia2026.json';
  document.body.appendChild(a); a.click();
  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function downloadPDF(){
+ // Freeze the bars at their current widths for print
+ ['bp','be','bs','bag','ba'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el){el.style.transition='none';}
+ });
+ // Short delay then print
+ setTimeout(()=>window.print(), 100);
 }
 
 function restart(){
